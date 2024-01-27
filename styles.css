@@ -1,0 +1,218 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.i-block{
+    display: inline-block;
+}
+.navbar {
+    /* background: #333; */
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 10px 20px;
+    color: #fff;
+    font-family: sans-serif;
+    position: sticky;
+    top: 0px;
+    z-index: 100;
+    background-color: #333333f0;
+}
+
+.nav_line{
+    border-right: 1px solid white;
+    margin-right: 0px;
+    height: 31px;
+    margin-left: 14px;
+}
+.logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.navbar a {
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: larger;
+    /* font-size: larger; */
+    text-decoration: none;
+}
+.buttons {
+    /* margin-left: 17px; */
+    margin-left: 160px;
+}
+
+.jamButton button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+.jamButton {
+    right: 15px;
+    position: absolute;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Initially hidden */
+    width: 300px;
+    height: 100%;
+    background: #000;
+    transition: right 0.3s;
+}
+
+.sidebar.open {
+    right: 0; /* Show the sidebar */
+}
+/* ... (previously defined styles) */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Initially hidden */
+    width: 300px;
+    height: 100%;
+    background: #000;
+    transition: right 0.3s;
+    z-index: 1; /* Ensure it's above other content */
+}
+
+.sidebar.open {
+    right: 0; /* Show the sidebar */
+}
+
+.sidebar-header {
+    text-align: center;
+    padding: 20px;
+}
+
+.sidebar-header h2 {
+    color: #fff;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-menu li {
+    padding: 10px;
+}
+
+.sidebar-menu a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    transition: 0.2s;
+}
+
+.sidebar-menu a:hover {
+    background: #444;
+}
+.message-popup {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    display: none;
+    z-index: 9999;
+}
+.success {
+    background-color: #28a745;
+}
+
+.danger {
+    background-color: #dc3545;
+}
+
+.credit{
+    display: inline-block;
+    margin-right: 26px;
+    font-size: larger;
+}
+.credit_img img{
+    display: inline-block;
+    width: 27px;
+    vertical-align: middle;
+}
+.premium_btn_div{
+            /* text-decoration: none; */
+            color: white;
+            /* height: 45px; */
+            /* display: inline-block; */
+            /* border: 2px solid white; */
+            /* font-size: 20px; */
+            border-radius: 27px;
+            /* width: max-content; */
+            /* text-align: center; */
+            /* margin-left: 10px; */
+            background-color: #ff4f6e !important;
+            border: 2px solid #ff4f6e;
+            display: flex;
+            /* justify-content: center; */
+            /* align-items: center; */
+            /* margin-right: 10px; */
+            /* font-family: sans-serif; */
+            /* display: flex; */
+            padding: 1px 10px;
+}
+.premium_btn_div a{
+    margin: 2px 18px;
+}
+
+/* navigation bar -> sidebar code  */
+
+#mySidebar {
+    position: absolute;
+    right: 20px;
+    top: 52px;
+    /* border: 3px solid black; */
+    width: 200px;
+    /* background-color: #fff; */
+    /* z-index: 1; */
+    overflow-x: hidden;
+    overflow-y: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+    background-color: #4c4c4c;
+    z-index: 22;
+    border-radius: 4px;
+
+  }
+
+  #mySidebar.show {
+    max-height: 500px; /* Adjust this value to fit your content */
+    transition: max-height 0.8s ease;
+  }
+
+  #sidebarWrapper {
+    overflow-y: hidden;
+  }
+
+  #mySidebar a {
+    color: white;
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    /* color: #333; */
+    transition: background-color 0.3s ease;
+    font-family: sans-serif;
+  }
+
+  #mySidebar a:hover {
+    background-color: #f0f0f0;
+    color: #444444;
+  }
+
+

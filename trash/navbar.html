@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Your Website</title>
+  <style>
+    body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.navbar {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.sidebar-btn {
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 6px 0;
+}
+
+.logo {
+  font-size: 1.5em;
+}
+
+.right-buttons {
+  display: flex;
+}
+
+.explore-btn, .login-btn {
+  background-color: transparent;
+  color: white;
+  border: none;
+  margin-left: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-left: 5px;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 1.2em;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #818181;
+}
+
+.sidebar-btn.active .bar:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.sidebar-btn.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.sidebar-btn.active .bar:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="sidebar-btn" onclick="toggleSidebar()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+  <div class="logo">Your Logo</div>
+  <div class="right-buttons">
+    <button class="explore-btn">Explore <span class="icon">🔍</span></button>
+    <button class="login-btn">Login <span class="icon">👤</span></button>
+  </div>
+</div>
+
+<div class="sidebar">
+  <!-- Sidebar content and links go here -->
+  <a href="#">Home</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Contact</a>
+</div>
+
+<!-- Your website content goes here -->
+<script>
+    function toggleSidebar() {
+  var sidebar = document.querySelector('.sidebar');
+  var sidebarBtn = document.querySelector('.sidebar-btn');
+  sidebar.classList.toggle('active');
+  sidebarBtn.classList.toggle('active');
+}
+
+</script>
+<script src="script.js"></script>
+</body>
+</html>
