@@ -7,7 +7,7 @@
         <!-- <a href="javascript:void(0)" onclick="showImageGeneration()">Generate</a>
             <a href="javascript:void(0)" onclick="showGallery()">Explore ideas</a> -->
 
-        <a href="welcome.php" id="imageButton">Generate</a>
+        <a href="index.php" id="imageButton">Generate</a>
         <a href="creation.php" id="chatButton">Explore ideas</a>
         <a href="blog.php" id="chatButton">Blog</a>
         <a href="contact.php" id="chatButton">Contact</a>

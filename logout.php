@@ -14,7 +14,7 @@ session_destroy();
 localStorage.clear();
 
 // Redirect the user to the welcome page
-window.location.href = 'welcome.php';
+window.location.href = 'index.php';
 </script>
 
 
@@ -33,6 +33,6 @@ session_unset();
  
 // destroy the session
 session_destroy();
-header("location:welcome.php" );
+header("location:index.php" );
 
 ?> -->

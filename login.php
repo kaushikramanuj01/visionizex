@@ -6,7 +6,7 @@ include "navbar.php";
 $p = isset($_GET['p']) ? $_GET['p'] : 0;
 
 if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
-    header("location:welcome.php" );
+    header("location:index.php" );
 }
 ?>
 
@@ -243,7 +243,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
             if (jsondata.success == 1) {
                 var parameter1 = '1'; // for login indicate
                 var parameter2 = '1'; // for prompt is set indicate
-                var redirectUrl = 'welcome.php?l=' + encodeURIComponent(parameter1);
+                var redirectUrl = 'index.php?l=' + encodeURIComponent(parameter1);
                 if (p == 1) {
                     redirectUrl = redirectUrl + '&p=' + encodeURIComponent(parameter2);
                 }

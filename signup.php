@@ -2,7 +2,7 @@
     require_once "config/init.php";
 
     if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
-        header("location:welcome.php" );
+        header("location:index.php" );
     }
 ?>
 
@@ -221,7 +221,7 @@
             if (jsondata.success == 1) {
                 var parameter1 = '1';
                 // var parameter2 = 'value2';
-                var redirectUrl = 'welcome.php?l=' + encodeURIComponent(parameter1);
+                var redirectUrl = 'index.php?l=' + encodeURIComponent(parameter1);
                 window.location.href = redirectUrl;
             }
 

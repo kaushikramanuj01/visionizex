@@ -1,10 +1,16 @@
 <?php
 
 class DB{
+    // private $servername = "localhost";
+    // private $username = "root";
+    // private $password = "";
+    // private $dbname = "jarvai";
+    // private $conn;
+
     private $servername = "localhost";
-    private $username = "root";
-    private $password = "";
-    private $dbname = "jarvai";
+    private $username = "visioniz_rkt";
+    private $password = "?^V6q_#Cxk4g";
+    private $dbname = "visioniz_jarvai";
     private $conn;
 
     public function __construct() {

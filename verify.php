@@ -154,8 +154,8 @@ if ($success === true)
     //         }
     // } //1
     // redirect user to download page . 
-    header("location:welcome.php");
-    // header("location:".  SITEURL."welcome.php?payment_complete&email=".$email);
+    header("location:index.php");
+    // header("location:".  SITEURL."index.php?payment_complete&email=".$email);
 }
 else
 {
