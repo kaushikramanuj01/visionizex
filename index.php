@@ -36,17 +36,19 @@ console.log(user_prompts);
     .input_container {
         display: flex;
         justify-content: space-between;
-        margin: 10px;
+        margin: 13px;
     }
 
     .user_input {
+        /* width: 90rem; */
         width: 95%;
         display: flex;
         justify-content: space-around;
     }
 
     .user_input input {
-        width: 85%;
+        /* width: 75vw; */
+        width: 100%;
         font-size: 16px;
         border-radius: 27px;
         padding: 6px;
@@ -54,6 +56,10 @@ console.log(user_prompts);
         border: 1px solid #7c7c7c;
         color: #d0cfcf;
         box-shadow: white 2px 5px 25px -18px;
+    }
+
+    .user_input textarea {
+        display: none;
     }
 
     .generate_btn {
@@ -64,7 +70,9 @@ console.log(user_prompts);
         /* border: 2px solid white; */
         font-size: 20px;
         border-radius: 27px;
+        /* width: 9rem; */
         width: 13%;
+        min-width: 6rem;
         text-align: center;
         margin-left: 10px;
         background-color: ff4f6e;
@@ -89,7 +97,10 @@ console.log(user_prompts);
     }
 
     .surprise_btn {
+        /* width: 10rem; */
         width: 11%;
+        min-width: max-content;
+        /* min-width: 7rem; */
         /* border: 2px solid white; */
         border-radius: 27PX;
         text-align: center;
@@ -98,14 +109,14 @@ console.log(user_prompts);
         justify-content: center;
         align-items: center;
         font-family: sans-serif;
-
+        padding: 0px 4px;
     }
 
     .surprise_btn:hover {
         cursor: pointer;
     }
 
-    .surprise_btn a {
+    .surprise_btn{
         text-decoration: none;
         color: white;
         font-size: 20px;
@@ -115,6 +126,8 @@ console.log(user_prompts);
     .body_container {
         display: flex;
         margin-top: 40px;
+        justify-content: space-between;
+        margin-right: 13px;
     }
 
     .image {
@@ -129,7 +142,7 @@ console.log(user_prompts);
     .main_img {
         justify-content: center;
     display: flex;
-    /* width: max-content; */
+    width: -webkit-fill-available;
     /* width: 39%; */
     /* height: auto; */
     height: -webkit-fill-available;
@@ -155,7 +168,7 @@ console.log(user_prompts);
         background-color: #555353;
         padding-top: 10px;
         width: 15%;
-        margin-right: 13px;
+        /* margin-right: 13px; */
         border-radius: 10px;
         height: 80vh;
     }
@@ -331,21 +344,101 @@ console.log(user_prompts);
         padding: 3PX;
         cursor: pointer;
     }
+
+    .generate-btns{
+        display: flex;
+    }
+    /* Add your media queries for responsiveness here */
+    @media screen and (max-width: 1044px) {
+        .hist_panel {
+            width: 17%;
+        }
+        .image {
+            width: 83%;
+        }
+        /* .input_container {
+            flex-direction: row;
+        }
+
+        .user_input {
+            width: 70%;
+        }
+
+        .generate_btn,
+        .surprise_btn {
+            width: 25%;
+        }
+
+        .main_img_div {
+            width: 60%;
+        } */
+
+    }
+
+    @media screen and (max-width: 520px) {
+        .generate_btn{
+            min-width: 4rem;
+        }
+    }
+    
+    @media screen and (max-width: 390px) {
+        .input_container{
+            display: block;
+        }
+        .user_input{
+            width: 100%;
+        }
+        .user-input{
+            display: none;
+        }
+        .user-area{
+            display: block !important;
+            width: -webkit-fill-available;
+            height: 70px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        .generate_btn{
+            margin: 0px;
+            width: 54vw;
+            font-size: 17px !important;
+            display: inline-block;   
+        }
+        .surprise_btn{
+            width: 27vw;
+            display: inline-block;
+            font-size: 17px !important;
+        }
+        .surprise_btn{
+            font-size: 17px !important;
+        }
+        .generate-btns{
+            margin-top: 10px;
+            gap: 8px;
+        }
+    }
+
     </style>
 </head>
 
 <body>
     <div class="input_container">
         <div class="user_input">
-            <input type="text" id="promptInput" placeholder="Type your prompt here">
-            <!-- <div > -->
-                <a href="javascript:void(0)" class="generate_btn" id="generate">Generate</a>
-            <!-- </div> -->
+            <input type="text" id="promptInput" class="user-input" placeholder="Type your prompt here">
+
+            <textarea id="promptInput" class="user-area" placeholder="Type your prompt here..."></textarea>
 
         </div>
-        <div class="surprise_btn">
-            <a href="http://">Surprise Me</a>
+        
+        <div class="generate-btns">
+            <a href="javascript:void(0)" class="generate_btn" id="generate">Generate</a>
+            
+            <!-- <div class="surprise_btn"> -->
+                <a href="http://" class="surprise_btn">Surprise Me</a>
+            <!-- </div> -->
         </div>
+
     </div>
 
 

@@ -264,6 +264,24 @@ body {
         #openSidebar{
             display: inline-block;
         }
+        .generate_btn.surprise_btn{
+            font-size: large;        
+        }
+
+    }
+    
+    @media screen and (max-width: 600px) {
+        .generate_btn{
+            font-size: 16px !important;
+            min-width: fit-content;
+            padding: 0px 7px;
+        }
+        .surprise_btn {
+            padding: 0px 7px;
+        }
+        .surprise_btn{
+            font-size: 16px !important;
+        }
 
     }
 
@@ -283,6 +301,17 @@ body {
         }
         .jamButton button{
             font-size: 20px;
+        }
+        .user_input input {
+            padding: 4px 7px;
+            font-size: 13px;
+        }
+        .generate_btn{
+            font-size: 13px !important;
+            min-width: 3rem;   
+        }
+        .surprise_btn{
+            font-size: 13px !important;  
         }
     }
 
