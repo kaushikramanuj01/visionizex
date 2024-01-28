@@ -11,7 +11,8 @@ body {
     display: flex;
     /* justify-content: space-between; */
     align-items: center;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
+    padding: 10px 5px;
     color: #fff;
     font-family: sans-serif;
     position: sticky;
@@ -43,7 +44,8 @@ body {
 }
 .buttons {
     /* margin-left: 17px; */
-    margin-left: 160px;
+    /* margin-left: 160px; */
+    margin-left: 2vw;
 }
 
 .jamButton button {
@@ -52,10 +54,14 @@ body {
     color: #fff;
     font-size: 24px;
     cursor: pointer;
+    padding: 0px;
+    display: none;
 }
 .jamButton {
-    right: 15px;
+    right: 13px;
     position: absolute;
+    display: flex;
+    align-items: center;
 }
 
 .sidebar {
@@ -160,6 +166,7 @@ body {
             background-color: #ff4f6e !important;
             border: 2px solid #ff4f6e;
             display: flex;
+            margin-right: 0px !important;
             /* justify-content: center; */
             /* align-items: center; */
             /* margin-right: 10px; */
@@ -186,7 +193,7 @@ body {
     max-height: 0;
     transition: max-height 0.4s ease;
     background-color: #4c4c4c;
-    z-index: 22;
+    z-index: 100;
     border-radius: 4px;
 
   }
@@ -215,4 +222,78 @@ body {
     color: #444444;
   }
 
+  #openSidebar{
+    margin-left: 13px;
+  }
+  .f-center{
+    display: flex;
+    align-items: center;
+  }
 
+  .nav-second{
+    width: -webkit-fill-available;
+    height: 6%;
+    margin-left: 8px;
+    display: none;
+  }
+
+  .nav-second a{
+    color: #fff;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: medium;
+    text-decoration: none;
+    font-family: sans-serif;
+  }
+  .border-b{
+    border-bottom: 2px solid white;
+  }
+  
+  
+  /* Add your media queries for responsiveness here */
+    @media screen and (max-width: 850px) {
+        .navbar a {
+            font-size: large;
+        }
+        .nav_hide{
+            display: none;
+        }
+        .credit{
+            margin-right: 0px;
+        }
+        #openSidebar{
+            display: inline-block;
+        }
+
+    }
+
+    @media screen and (max-width: 450px) {
+        .logo img {
+            width: 35px;
+            height: 35px;
+        }
+        .navbar a {
+            font-size: small;
+        }
+        .credit {
+            font-size: small;
+        }
+        .credit_img img {
+            width: 22px;
+        }
+        .jamButton button{
+            font-size: 20px;
+        }
+    }
+
+    @media screen and (max-width: 390px) {
+        .nav_hide2{
+            display: none;
+        }
+
+        .nav-second{
+            display: block;
+        }
+    }
+
+    
