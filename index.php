@@ -503,6 +503,8 @@ console.log(user_prompts);
 
         </div>
 
+        <?php if(isset($_SESSION['user_prompts'])){ ?>
+
         <div class="hist_panel">
             <div class="recent_t">
                 <h6>Recent</h6>
@@ -527,6 +529,8 @@ console.log(user_prompts);
                 </div>
             </div>
         </div>
+        <?php } ?>
+
     </div>
 
     <!-- <div class="creation" id="creation">

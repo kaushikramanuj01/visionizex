@@ -333,6 +333,9 @@ body {
         }
 
         .nav-second{
+            height: max-content;
+            margin-left: 8px;
+            margin-bottom: 15px;
             display: block;
         }
         /* new here */
@@ -408,6 +411,9 @@ body {
         }
         .gallery img{
             width: 160px !important;
+        }
+        .slider-container{
+            width: 70% !important;
         }
     }
     
