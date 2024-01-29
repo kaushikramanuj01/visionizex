@@ -484,7 +484,7 @@ console.log(user_prompts);
         <div class="user_input">
             <input type="text" id="promptInput" class="user-input" placeholder="Type your prompt here">
 
-            <textarea id="promptInput2" class="user-area" placeholder="Type your prompt here..."></textarea>
+            <textarea id="promptInputarea" class="user-area" placeholder="Type your prompt here..."></textarea>
 
         </div>
         
@@ -828,17 +828,12 @@ console.log(user_prompts);
             $("#generate").on("click", function() {
                 $(".generation_msg_box").show();
 
-            // Check if the input field with class "user-input" is visible
-            if ($(".user-input").is(":visible")) {
-                const inputText = $(".user-input").val();
-            } else {
-                const inputText = $(".user-area").val();
-            }
-
-                // const inputText = $("#promptInput").val();
-                // if(inputText == ""){
-                //     const inputText = $("#promptInput2").val();
-                // }
+                var inputText = document.getElementById("promptInput").value.trim();
+                // Check if input value is empty
+                if (inputText === "") {
+                    // If input value is empty, get value from textarea
+                    inputText = document.getElementById("promptInputarea").value.trim();
+                }
                 // $("#loader").show();
                 // generateText(inputText);
                 // Get a value from session storage
