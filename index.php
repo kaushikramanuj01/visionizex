@@ -503,7 +503,7 @@ console.log(user_prompts);
 
         </div>
 
-        <?php if(isset($_SESSION['user_prompts'])){ ?>
+        <?php if(isset($_SESSION['login'])){ ?>
 
         <div class="hist_panel">
             <div class="recent_t">
