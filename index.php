@@ -828,10 +828,17 @@ console.log(user_prompts);
             $("#generate").on("click", function() {
                 $(".generation_msg_box").show();
 
-                const inputText = $("#promptInput").val();
-                if(inputText == ""){
-                    const inputText = $("#promptInput2").val();
-                }
+            // Check if the input field with class "user-input" is visible
+            if ($(".user-input").is(":visible")) {
+                const inputText = $(".user-input").val();
+            } else {
+                const inputText = $(".user-area").val();
+            }
+
+                // const inputText = $("#promptInput").val();
+                // if(inputText == ""){
+                //     const inputText = $("#promptInput2").val();
+                // }
                 // $("#loader").show();
                 // generateText(inputText);
                 // Get a value from session storage
