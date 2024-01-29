@@ -450,7 +450,7 @@ console.log(user_prompts);
         }
     }
     
-    @media screen and (max-width: 350px) {
+    @media screen and (max-width: 390px) {
         .body_container{
             display: block;
         }
@@ -473,6 +473,9 @@ console.log(user_prompts);
         }
         .grid_sc img{
             width: 60px;
+        }
+        .main_img_div {
+            width: calc(60% + 50px) !important;
         }
     }
 
