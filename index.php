@@ -412,80 +412,13 @@ console.log(user_prompts);
         }
     }
     
-    @media screen and (max-width: 390px) {
-        .input_container{
-            display: block;
-        }
-        .user_input{
-            width: 100%;
-        }
-        .user-input{
-            display: none;
-        }
-        .user-area{
-            display: block !important;
-            width: -webkit-fill-available;
-            height: 70px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-family: sans-serif;
-        }
-        .generate_btn{
-            margin: 0px;
-            width: 54vw;
-            font-size: 17px !important;
-            display: inline-block;   
-        }
-        .surprise_btn{
-            width: 27vw;
-            display: inline-block;
-            font-size: 17px !important;
-        }
-        .surprise_btn{
-            font-size: 17px !important;
-        }
-        .generate-btns{
-            margin-top: 10px;
-            gap: 8px;
-        }
-    }
-    
-    @media screen and (max-width: 390px) {
-        .body_container{
-            display: block;
-        }
-        .image{
-            width: 100%;
-        }
-        .hist_panel{
-            width: 96%;
-            height: max-content;
-            margin-bottom: 50px;
-            margin-top: 15px;
-            margin-left: 13px;
-        }
-        .grid::-webkit-scrollbar {
-            width: 10px;
-        }
-        .grid_sc {
-            flex-direction: row;
-            margin: 10px 0px;
-        }
-        .grid_sc img{
-            width: 60px;
-        }
-        .main_img_div {
-            width: calc(60% + 50px) !important;
-        }
-    }
-
     </style>
 </head>
 
 <body>
     <div class="input_container">
         <div class="user_input">
-            <input type="text" id="promptInput" class="user-input" placeholder="Type your prompt here">
+            <input type="text" id="promptInput" class="user-text" placeholder="Type your prompt here">
 
             <textarea id="promptInputarea" class="user-area" placeholder="Type your prompt here..."></textarea>
 

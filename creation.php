@@ -148,6 +148,9 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
         justify-content: center;
 
     }
+    .gallery img{
+        width: 150px;
+    }
     </style>
 </head>
 

@@ -324,6 +324,9 @@ body {
         }
     }
 
+    /* @media screen and (max-width: 390px) {
+    } */
+    
     @media screen and (max-width: 390px) {
         .nav_hide2{
             display: none;
@@ -332,6 +335,81 @@ body {
         .nav-second{
             display: block;
         }
-    }
+        /* new here */
+        .input_container{
+            display: block !important;
+        }
+        .user_input{
+            width: 100% !important;
+        }
+        .user-text{
+            display: none !important;
+        }
+        .user-area{
+            display: block !important;
+            width: -webkit-fill-available;
+            height: 70px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+        .generate_btn{
+            margin-left: 0px !important;
+            margin-right: 0px !important;
+            width: 54vw !important;
+            font-size: 17px !important;
+            display: inline-block;   
+        }
+        .surprise_btn{
+            width: 27vw !important;
+            display: inline-block !important;
+            font-size: 17px !important;
+        }
+        .surprise_btn{
+            font-size: 17px !important;
+        }
+        .generate-btns{
+            margin-top: 10px;
+            gap: 8px;
+        }
 
+        /* new here */
+        .body_container{
+            display: block !important;
+        }
+        .image{
+            width: 100% !important;
+        }
+        .hist_panel{
+            /* margin-top: 0px !important; */
+            height: max-content !important;
+            width: 96% !important;
+            margin-bottom: 50px !important;
+            margin-top: 15px !important;
+            margin-left: 13px !important;
+        }
+        .grid::-webkit-scrollbar {
+            width: 10px;
+        }
+        .grid_sc {
+            flex-direction: row !important;
+            margin: 10px 0px !important;
+        }
+        .grid_sc img{
+            width: 60px !important;
+        }
+        .main_img_div {
+            width: calc(60% + 50px) !important;
+        }
+
+        /* explore page */
+        .mySlides img{
+            height: 140px !important;
+        }
+        .gallery img{
+            width: 160px !important;
+        }
+    }
     
+    /* @media screen and (max-width: 390px) {   
+    } */
