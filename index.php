@@ -375,9 +375,40 @@ console.log(user_prompts);
 
     }
 
+    @media screen and (max-width: 950px) {
+        .main_img_div{
+            width: calc(41% + 50px);
+        }
+    }
+
+    @media screen and (max-width: 750px) {
+        .image {
+            width: 80%;
+        }
+        .hist_panel {
+            width: 20%;
+        }
+        .main_img_div{
+            width: calc(51% + 50px) !important;
+        }
+    }
+
     @media screen and (max-width: 520px) {
         .generate_btn{
             min-width: 4rem;
+        }
+        .image {
+            width: 78%;
+        }
+        .hist_panel {
+            width: 22%;
+        }
+        .main_img{
+            justify-content: start;
+        }
+        .main_img_div {
+            width: calc(55% + 50px) !important;
+            margin-left: 13px;
         }
     }
     
@@ -418,6 +449,32 @@ console.log(user_prompts);
             gap: 8px;
         }
     }
+    
+    @media screen and (max-width: 350px) {
+        .body_container{
+            display: block;
+        }
+        .image{
+            width: 100%;
+        }
+        .hist_panel{
+            width: 96%;
+            height: max-content;
+            margin-bottom: 50px;
+            margin-top: 15px;
+            margin-left: 13px;
+        }
+        .grid::-webkit-scrollbar {
+            width: 10px;
+        }
+        .grid_sc {
+            flex-direction: row;
+            margin: 10px 0px;
+        }
+        .grid_sc img{
+            width: 60px;
+        }
+    }
 
     </style>
 </head>
@@ -435,7 +492,7 @@ console.log(user_prompts);
             <a href="javascript:void(0)" class="generate_btn" id="generate">Generate</a>
             
             <!-- <div class="surprise_btn"> -->
-                <a href="http://" class="surprise_btn">Surprise Me</a>
+            <a href="http://" class="surprise_btn">Surprise Me</a>
             <!-- </div> -->
         </div>
 
