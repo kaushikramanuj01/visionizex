@@ -27,14 +27,17 @@ $usercredit = $SubDB->countcredit();
             display: flex;
             /* background-color: red; */
             width: 100%;
-            height: 100%;
+            height: max-content;
             align-items: center;
             justify-content: center;
+            padding: 12px 0px;
+            /* padding: 34px 0px; */
         }
 
         .sub_div {
             width: 85%;
-            height: 75%;
+            height: max-content;
+            padding-bottom: 15px;
             background-color: #0b0f17;
             background-image: linear-gradient(170deg, rgba(87, 139, 254, 0.12) 0.65%, rgba(87, 139, 254, 0) 19%, #0b0f17);
         }
@@ -54,6 +57,10 @@ $usercredit = $SubDB->countcredit();
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+        .total_div_a span{
+            font-size: 17px;
+            padding: 6px 0px;
         }
 
         /* .total_div_b {
@@ -245,6 +252,29 @@ $usercredit = $SubDB->countcredit();
         .con2{
             margin-top: 4em;
         }
+
+        @media screen and (max-width: 850px) {
+            .total_div_a{
+                width: 200px;
+            }
+        }
+        
+        @media screen and (max-width: 450px) {
+            .sub_div {
+                width: 95%;
+            }
+        }
+        
+        @media screen and (max-width: 390px) {
+            .rwd-table {
+                    min-width: 250px;
+                    max-width: 90%;
+            }
+            .total_div_a{
+                left: 15px;
+            }
+        }
+    
     </style>
 </head>
 
