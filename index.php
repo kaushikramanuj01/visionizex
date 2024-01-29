@@ -484,7 +484,7 @@ console.log(user_prompts);
         <div class="user_input">
             <input type="text" id="promptInput" class="user-input" placeholder="Type your prompt here">
 
-            <textarea id="promptInput" class="user-area" placeholder="Type your prompt here..."></textarea>
+            <textarea id="promptInput2" class="user-area" placeholder="Type your prompt here..."></textarea>
 
         </div>
         
@@ -829,6 +829,9 @@ console.log(user_prompts);
                 $(".generation_msg_box").show();
 
                 const inputText = $("#promptInput").val();
+                if(inputText == ""){
+                    const inputText = $("#promptInput2").val();
+                }
                 // $("#loader").show();
                 // generateText(inputText);
                 // Get a value from session storage
