@@ -195,11 +195,6 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
             font-size: 16px;
         }
     }
-    @media (max-width: 400px) {
-        .login-container {
-            width: 90%;
-        }
-    }
     @media (max-width: 390px) {
         .login_main {
             margin-top: 5vh;
