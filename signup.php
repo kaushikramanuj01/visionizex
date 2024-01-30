@@ -24,35 +24,52 @@
         font-family: 'Arial', sans-serif;
         background-color: #333;
         /* display: flex; */
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
+        /* align-items: center; */
+        /* justify-content: center; */
+        /* height: 100vh; */
     }
 
-    .login-container {
+    /* .login-container {
         background-color: #595757;
         border-radius: 8px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         overflow: hidden;
         width: 331px;
         text-align: center;
+        height: 83vh; */
+    /* } */
+    .login-container {
+        /* background-color: #595757; */
+        /* border-radius: 8px; */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 40%;
+        /* width: 331px; */
+        text-align: center;
         height: 83vh;
+        background-image: linear-gradient(360deg, rgba(87, 139, 254, 0.12) 1.65%, rgba(87, 139, 254, 0) 19%, #0b0f17);
+        /* display: inline-block; */
+        margin: 0px;
+        float: left;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .login-header {
-        background: linear-gradient(to right, #3E514D, #484747);
+        /* background: linear-gradient(to right, #3E514D, #484747); */
         color: #fff;
         padding: 20px;
     }
-
     .login-form {
         padding: 20px;
+        width: 80%;        
     }
-
     .form-group {
         margin-bottom: 20px;
     }
-
     .form-group label {
         font-size: 14px;
         color: white;
@@ -60,9 +77,9 @@
         margin-bottom: 8px;
         text-align: left;
     }
-
     .form-group input {
-        width: calc(100% - 20px);
+        /* width: calc(100% - 20px); */
+        width: 100%;
         padding: 6px;
         border: none;
         border-radius: 4px;
@@ -72,19 +89,16 @@
         box-sizing: border-box;
         background-color: #333;
     }
-
     .form-group input:focus {
         outline: none;
         border-color: #007bff;
     }
-
     .validation-indicator {
         display: none;
         font-size: 12px;
         color: #dc3545;
         text-align: left;
     }
-
     .signup-button {
         color: #fff;
         padding: 7px;
@@ -95,39 +109,47 @@
         width: 100%;
         background: linear-gradient(to right, #3E514D, #484747);
     }
-
     .signup-button:hover {
         background-color: #0056b3;
     }
-
     .additional-links {
         margin-top: 20px;
         font-size: 14px;
         color: #007bff;
         text-align: center;
     }
-
     .additional-links p,
     a {
         color: white;
     }
-
     .additional-links a:hover {
         color: #DECBD7;
     }
-
-    @media (max-width: 400px) {
-        .login-container {
-            width: 90%;
-        }
-    }
-
     .login_main {
         display: flex;
         justify-content: center;
         margin-top: 3vh;
+        margin-bottom: 4vh;
     }
-
+    .byk {
+        width: 78%;
+        /* background-color: antiquewhite; */
+        /* background-image: url(images/p1.jpg); */
+        /* border-top-left-radius: 8px; */
+        border-bottom-left-radius: 8px;
+        /* background-size: cover;*/
+    }
+    .byj {
+        width: 60%;
+        /* background-color: black; */
+        height: 100%;
+        display: inline-block;
+        /* margin: 0px; */
+        /* background-image: url(images/p1.jpg); */
+        background: url(images/p1.jpg) no-repeat center center;
+        background-size: cover;
+        box-sizing: border-box;
+    }
     .message-popup {
         position: fixed;
         top: 10px;
@@ -140,13 +162,58 @@
         display: none;
         z-index: 9999;
     }
-
     .success {
         background-color: #28a745;
     }
-
     .danger {
         background-color: #dc3545;
+    }
+
+    @media (max-width: 1000px) {
+        .byk {
+            width: 90%;
+        }
+        .login-container {
+            width: 45%;
+        }
+        .byj {
+            width: 55%;
+        }
+    }
+    @media (max-width: 480px) {
+        .login-container {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .login-header{
+            padding: 15px;
+        }
+        .form-group {
+            margin-bottom: 17px;
+        }
+        .byj{
+            display: block;
+            width: auto;
+            border-radius: 8px;
+        }
+        .form-group label {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .login-button{
+            font-weight: 700;
+        }
+        .additional-links {
+            font-size: 16px;
+        }
+    }
+    @media (max-width: 390px) {
+        .login_main {
+            margin-top: 5vh;
+        }
+        .additional-links {
+            font-size: 15px;
+        }
     }
     </style>
 </head>
@@ -157,32 +224,37 @@
     ?>
 
     <div id="messagePopup" class="message-popup"></div>
+
     <div class="login_main">
-        <div class="login-container">
-            <div class="login-header">
-                <h2>Sign Up</h2>
-            </div>
-            <div class="login-form">
-                <form id="signupForm" action="your-server-endpoint" method="post">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+        <div class="byk">
+            <div class="login-container">
+                <div class="login-header">
+                    <h2>Sign Up</h2>
+                </div>
+                <div class="login-form">
+                    <form id="signupForm" action="your-server-endpoint" method="post">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <button type="button" class="signup-button" id="signup-button">Sign Up</button>
+                    </form>
+                    <div class="additional-links">
+                        <p>Already have an account? <a href="login.php">Login</a></p>
+                        <!-- <p><a href="#">Forgot Password?</a></p> -->
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <button type="button" class="signup-button" id="signup-button">Sign Up</button>
-                </form>
-                <div class="additional-links">
-                    <p>Already have an account? <a href="login.php">Login</a></p>
-                    <!-- <p><a href="#">Forgot Password?</a></p> -->
                 </div>
             </div>
+
+            <div class="byj"></div>
         </div>
     </div>
 

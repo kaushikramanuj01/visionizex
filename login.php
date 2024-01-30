@@ -174,7 +174,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
             width: 55%;
         }
     }
-    @media (max-width: 430px) {
+    @media (max-width: 480px) {
         .login-container {
             width: 100%;
             border-radius: 8px;
