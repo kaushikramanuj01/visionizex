@@ -76,7 +76,7 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
         padding: 8px 12px;
         position: absolute;
         bottom: 8px;
-        width: 100%;
+        width: -webkit-fill-available;
         text-align: center;
     }
 
@@ -155,7 +155,6 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
 </head>
 
 <body>
-
 
     <div class="main_slider_con">
         <div class="slideshow-container">
