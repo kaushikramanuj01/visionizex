@@ -135,16 +135,11 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
         color: #DECBD7;
     }
 
-    @media (max-width: 400px) {
-        .login-container {
-            width: 90%;
-        }
-    }
-
     .login_main {
         display: flex;
         justify-content: center;
         margin-top: 3vh;
+        margin-bottom: 4vh;
     }
 
     .byk {
@@ -167,6 +162,53 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
         background-size: cover;
         box-sizing: border-box;
     }
+
+    @media (max-width: 1000px) {
+        .byk {
+            width: 90%;
+        }
+        .login-container {
+            width: 45%;
+        }
+        .byj {
+            width: 55%;
+        }
+    }
+    @media (max-width: 430px) {
+        .login-container {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .byj{
+            display: block;
+            width: auto;
+            border-radius: 8px;
+        }
+        .form-group label {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .login-button{
+            font-weight: 700;
+        }
+        .additional-links {
+            font-size: 16px;
+        }
+    }
+    @media (max-width: 400px) {
+        .login-container {
+            width: 90%;
+        }
+    }
+    @media (max-width: 390px) {
+        .login_main {
+            margin-top: 5vh;
+        }
+        .additional-links {
+            font-size: 15px;
+        }
+    }
+
     </style>
 </head>
 
@@ -280,5 +322,4 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
     </script>
 
 </body>
-
 </html>
