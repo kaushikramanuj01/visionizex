@@ -52,7 +52,7 @@ if(sizeof($imagedata) > 0){
             // Check if the directory exists, if not, create it
             if (!file_exists('images')) {
                 if (!mkdir('images', 0755, true)) {
-                    $message = 'Error: Unable to create directory';
+                    $message .= 'Error: Unable to create directory';
                     // Handle error appropriately, log, display, etc.
                     // You may choose to exit the script here if directory creation fails
                 }
