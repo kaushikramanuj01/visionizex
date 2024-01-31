@@ -217,6 +217,8 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+// var isLoading = false;
+
         fillimage();
 
         function fillimage() {
@@ -242,7 +244,7 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
                 // console.error('Error:', error);
                 $(".generation_msg_box").hide();
                 showPopupMessage("Server Error", 0);
-
+                isLoading = false; // Reset the data loading flag
             }
 
             function successCallback(data) {
@@ -251,7 +253,10 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
                     console.log(data.data);
 
                     var gallery = document.getElementById('gallery');
-                    gallery.innerHTML = gallery.innerHTML + data.data;
+                    // gallery.innerHTML = gallery.innerHTML + data.data;
+
+                    gallery.innerHTML += data.data;
+
 
                     var pageno = document.getElementById('pageno');
                     pageno.value = data.nextpage;
@@ -265,7 +270,7 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
                 } else {
                     console.log(data.message);
                 }
-
+                isLoading = false; // Reset the data loading flag
                 // if (data.imgurl) {
                 //     // $("#imageResult").attr("src", 'images/' + data.image_name);
                 //     // $("#imageResult").attr("src", data.imgurl);
@@ -304,27 +309,32 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
 
         }
 
+        // Flag to indicate whether data is currently being loaded
+        var isLoading = false;
         // Function to check if the user has scrolled to the bottom of the page
         function isScrolledToBottom() {
             return window.innerHeight + window.scrollY >= document.body.offsetHeight;
         }
-
         // Function to load more data (replace this with your actual data loading logic)
         function loadMoreData() {
+            if (isLoading) {
+                return; // If data is already being loaded, do nothing
+            }   
             console.log("Loading more data...");
-            fillimage();
-            // Add your data loading logic here
+            isLoading = true; // Set the loading flag to true
+            fillimage(); // Your data loading logic here
+            // After data loading is complete, set the loading flag back to false
+            // This ensures that the function can be called again when the user scrolls to the bottom next time
+            // isLoading = false;
         }
-
         // Event listener for the scroll event
         window.onscroll = function() {
             // Check if the user has scrolled to the bottom of the page
             if (isScrolledToBottom()) {
-
                 var loadmoreele = document.getElementById('loadmore');
-                var loadmore = loadmoreele.value;
-            
+                var loadmore = loadmoreele.value;       
                 console.log(loadmore);
+                console.log("isLoading" + isLoading);
                 if(loadmore == "1"){
                     // Load more data when the user reaches the bottom
                     loadMoreData();
