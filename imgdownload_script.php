@@ -26,7 +26,7 @@ if(sizeof($imagedata) > 0){
 
             if ($imageData !== false) {
                 $image_name = uniqid() . '.jpg';
-                $filename = '../images/' . $image_name;
+                $filename = 'images/' . $image_name;
 
                 // Open a file handle for writing
                 $file = fopen($filename, 'w');
