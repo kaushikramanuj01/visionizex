@@ -47,7 +47,7 @@ if(sizeof($imagedata) > 0){
 
         if ($imageData !== false) {
             $image_name = uniqid() . '.jpg';
-            $filename = 'images/' . $image_name;
+            $filename = 'public_html/images/' . $image_name;
             
             // Check if the directory exists
             if (!is_dir('images')) {
