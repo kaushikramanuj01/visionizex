@@ -49,41 +49,39 @@ if(sizeof($imagedata) > 0){
             $image_name = uniqid() . '.jpg';
             $filename = 'images/' . $image_name;
             
-            // Check if the directory exists, if not, create it
-            if (!file_exists('images')) {
-                if (!mkdir('images', 0755, true)) {
-                    $message .= 'Error: Unable to create directory';
-                    // Handle error appropriately, log, display, etc.
-                    // You may choose to exit the script here if directory creation fails
-                }
-            }
-
-            // Check if the directory is writable
-            if (!is_writable('images')) {
-                $message .= 'Error: Directory is not writable';
+            // Check if the directory exists
+            if (!is_dir('images')) {
+                $message = 'Error: Directory does not exist';
                 // Handle error appropriately, log, display, etc.
-                // You may choose to exit the script here if directory is not writable
-
-            }
-
-            // Check if file can be opened for writing
-            $file = fopen($filename, 'w');
-            if (!$file) {
-                $message .= 'Error: Unable to open file for writing';
-                // Handle error appropriately, log, display, etc.
-                // You may choose to exit the script here if file opening fails
+                // You may choose to exit the script here if directory doesn't exist
             } else {
-                // Write the image data in chunks
-                if (fwrite($file, $imageData) === false) {
-                    $message .= 'Error: Unable to write image data to file';
+                // Check if the directory is writable
+                if (!is_writable('images')) {
+                    $message = 'Error: Directory is not writable';
                     // Handle error appropriately, log, display, etc.
-                    // You may choose to exit the script here if writing fails
+                    // You may choose to exit the script here if directory is not writable
                 } else {
-                    // Close the file handle
-                    fclose($file);
-                    $message .= 'Image generated successfully !'; 
+                    // Try to open the file for writing
+                    $file = fopen($filename, 'w');
+                    if (!$file) {
+                        $message = 'Error: Unable to open file for writing';
+                        // Handle error appropriately, log, display, etc.
+                        // You may choose to exit the script here if file opening fails
+                    } else {
+                        // Write the image data in chunks
+                        if (fwrite($file, $imageData) === false) {
+                            $message = 'Error: Unable to write image data to file';
+                            // Handle error appropriately, log, display, etc.
+                            // You may choose to exit the script here if writing fails
+                        } else {
+                            // Close the file handle
+                            fclose($file);
+                            $message = 'Image generated successfully !'; 
+                        }
+                    }
                 }
             }
+
 
                 // $image_name = uniqid() . '.jpg';
                 // $filename = 'images/' . $image_name;
