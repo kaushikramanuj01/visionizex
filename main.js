@@ -227,7 +227,10 @@ function checkpassword(password){
     }
     return result;
 }
-function isValidEmail(email) {
+
+console.log("here11");
+function isValidEmail(email){
+    console.log("here22");
     // Regular expression pattern to match a valid email address
     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);

@@ -19,6 +19,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
     <!-- <link rel="stylesheet" href="theme/main.css"> -->
     <link rel="stylesheet" href="styles.css">
     <!-- <script src="main.js"></script> -->
+    <script src="main.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
@@ -242,7 +243,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
     </div>
 
     <!-- <script src="js/main.js"></script> -->
-    <script src="main.js"></script>
+    <!-- <script src="main.js"></script> -->
 
     <script>
     // inputText
