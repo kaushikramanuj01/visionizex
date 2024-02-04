@@ -245,6 +245,9 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
 
     <script>
     // inputText
+    document.addEventListener("DOMContentLoaded", function() {
+    // Your inline JavaScript code that relies on functions or variables from main.js
+
     p = <?php echo $p; ?>;
     if (p == 1) {
         showPopupMessage("finaly kaushik , Phodenge!!", 1);
@@ -329,6 +332,8 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
 
     //     // Implement your server-side validation and authentication logic here
     // }
+});
+
     </script>
 
 </body>
