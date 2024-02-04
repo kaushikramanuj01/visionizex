@@ -42,7 +42,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
         width: 40%;
         /* width: 331px; */
         text-align: center;
-        height: 83vh;
+        height: max-content;
         background-image: linear-gradient(360deg, rgba(87, 139, 254, 0.12) 1.65%, rgba(87, 139, 254, 0) 19%, #0b0f17);
         /* display: inline-block; */
         margin: 0px;
@@ -52,6 +52,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-bottom: 45px;
     }
 
     .login-header {
@@ -221,17 +222,14 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
                         <div class="form-group">
                             <label for="userid">User ID</label>
                             <input type="text" id="userid" name="userid" required>
-                            <div class="validation-indicator" id="useridValidation">Please enter a valid User ID</div>
+                            <div class="validation-indicator" id="emailValidation"></div>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" id="password" name="password" required>
-                            <div class="validation-indicator" id="passwordValidation">Password must be at least 6
-                                characters
-                            </div>
+                            <div class="validation-indicator" id="passValidation"></div>
                         </div>
-                        <button type="button" class="login-button" id="login-button"
-                            onclick="validateForm()">Login</button>
+                        <button type="button" class="login-button" id="login-button">Login</button>
                     </form>
                     <div class="additional-links">
                         <p>Don't have an account? <a href="signup.php">Sign up</a></p>
@@ -255,6 +253,23 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
     $("#login-button").on("click", function() {
         var userid = $("#userid").val();
         var password = $("#password").val();
+
+        if (isValidEmail(userid)) {
+            document.getElementById('emailValidation').style.display = 'none';
+        } else {
+            $("#emailValidation").text("Plese enter valid Email.");
+            var error = 1;
+            document.getElementById('emailValidation').style.display = 'block';
+        }
+        var checkpassresult = checkpassword(password);
+        $("#passValidation").text(checkpassresult.msg);
+        if(checkpassresult.status==0){
+            var error = 1;
+            document.getElementById('passValidation').style.display = 'block';
+        }else{
+            document.getElementById('passValidation').style.display = 'none';
+        }
+        if(error == 1){ return; }
 
         const url = "api/login";
         const method = "POST";
@@ -294,26 +309,26 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
         }
     });
 
-    function validateForm() {
-        var userid = document.getElementById('userid').value;
-        var password = document.getElementById('password').value;
+    // function validateForm() {
+    //     var userid = document.getElementById('userid').value;
+    //     var password = document.getElementById('password').value;
 
-        // Simple validation for demonstration purposes
-        if (!userid) {
-            document.getElementById('useridValidation').style.display = 'block';
+    //     // Simple validation for demonstration purposes
+    //     if (!userid) {
+    //         document.getElementById('useridValidation').style.display = 'block';
 
-        } else {
-            document.getElementById('useridValidation').style.display = 'none';
-        }
+    //     } else {
+    //         document.getElementById('useridValidation').style.display = 'none';
+    //     }
 
-        if (!password || password.length < 6) {
-            document.getElementById('passwordValidation').style.display = 'block';
-        } else {
-            document.getElementById('passwordValidation').style.display = 'none';
-        }
+    //     if (!password || password.length < 6) {
+    //         document.getElementById('passwordValidation').style.display = 'block';
+    //     } else {
+    //         document.getElementById('passwordValidation').style.display = 'none';
+    //     }
 
-        // Implement your server-side validation and authentication logic here
-    }
+    //     // Implement your server-side validation and authentication logic here
+    // }
     </script>
 
 </body>

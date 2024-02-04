@@ -14,8 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="theme/main.css"> -->
     <link rel="stylesheet" href="styles.css">
-    <script src="main.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="main.js"></script>
 
     <style>
     body {
@@ -46,7 +46,7 @@
         width: 40%;
         /* width: 331px; */
         text-align: center;
-        height: 83vh;
+        height: max-content;
         background-image: linear-gradient(360deg, rgba(87, 139, 254, 0.12) 1.65%, rgba(87, 139, 254, 0) 19%, #0b0f17);
         /* display: inline-block; */
         margin: 0px;
@@ -236,14 +236,17 @@
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
+                            <div class="validation-indicator" id="nameValidation"></div>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" id="email" name="email" required>
+                            <div class="validation-indicator" id="emailValidation"></div>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" id="password" name="password" required>
+                            <div class="validation-indicator" id="passValidation"></div>
                         </div>
                         <button type="button" class="signup-button" id="signup-button">Sign Up</button>
                     </form>
@@ -261,11 +264,42 @@
     <!-- <script src="js/main.js"></script> -->
 
     <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
     $("#signup-button").on("click", function() {
         var name = $("#name").val();
         var email = $("#email").val();
         var password = $("#password").val();
 
+        // ! data validation code start
+        if (isValidEmail(email)) {
+            document.getElementById('emailValidation').style.display = 'none';
+        } else {
+            $("#emailValidation").text("Plese enter valid Email.");
+            var error = 1;
+            document.getElementById('emailValidation').style.display = 'block';
+        }
+        var checknameresult = checkname(name);
+        if(checknameresult == 0){
+            var msg = "Please enter your Name.";
+            $("#nameValidation").text(msg);
+            var error = 1;
+            document.getElementById('nameValidation').style.display = 'block';
+        } else{
+            $("#name-error").text("");
+            document.getElementById('nameValidation').style.display = 'none';
+        }
+        var checkpassresult = checkpassword(password);
+        $("#passValidation").text(checkpassresult.msg);
+        if(checkpassresult.status==0){
+            var error = 1;
+            document.getElementById('passValidation').style.display = 'block';
+        }else{
+            document.getElementById('passValidation').style.display = 'none';
+        }
+        if(error == 1){ return; }
+        // ! data validation code end
+        
         // const url = "api/signup";
         const url = "api/login";
         const method = "POST";
@@ -364,6 +398,8 @@
     //         alert('Registration successful!');
     //     }
     // }
+});
+
     </script>
 
 </body>

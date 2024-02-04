@@ -8,6 +8,7 @@ $p = isset($_GET['p']) ? $_GET['p'] : 0;
 $l = isset($_GET['l']) ? $_GET['l'] : 0;
 
 $useremail = json_encode(isset($_SESSION['useremail']) ? ($_SESSION['useremail']) : "");
+$login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
 $useremail_decode = isset($_SESSION['useremail']) ? ($_SESSION['useremail']) : "";
 
 ?>
@@ -24,9 +25,9 @@ console.log(user_prompts);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="main.js"></script>
     <link rel="stylesheet" href="styles.css">
-    <!-- <script src="main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <title>Navigation Bar</title>
     <style>
     body {
@@ -535,9 +536,62 @@ console.log(user_prompts);
 
     <!-- <div class="creation" id="creation">
     </div> -->
+    
+    <!-- Popup Message -->
+    <!-- <div id="popup">
+        <button onclick="closePopup()">&times;</button>
+        <h2>Welcome!</h2>
+        <p>Login to get a free token.</p>
+    </div> -->
 
     <script>
+    
+    //! important start
+    // Function to close the popup and set the flag in local storage
+    // function closePopup() {
+    //     document.getElementById('popup').classList.remove('show');
+    //     localStorage.setItem('popupShown', 'true');
+    // }
+
     document.addEventListener('DOMContentLoaded', function() {
+
+        
+        // window.onload = function() {
+            // Check if the popup has been shown before
+            // if (!localStorage.getItem('popupShown')) {
+            //     // Show the popup
+            //     document.getElementById('popup').classList.add('show');
+            // }
+            // Function to show the popup message after a delay
+            // function showPopupDelayed(type) {
+            //     if(type == "login" && !localStorage.getItem('popupShown_login')){
+            //         document.getElementById('popup').querySelector('h2').textContent = 'Loged in';
+            //         document.getElementById('popup').querySelector('p').textContent = 'New message based on the condition.';
+            //         document.getElementById('popup').classList.add('show');
+            //         localStorage.setItem('popupShown_login', 'true');
+            //     }    
+            //      // Check if the popup has been shown before
+            //      if (!localStorage.getItem('popupShown')) {
+            //         // Show the popup
+            //         document.getElementById('popup').querySelector('h2').textContent = 'Welcome!';
+            //         document.getElementById('popup').querySelector('p').textContent = 'Login to get a free token.';
+            //         document.getElementById('popup').classList.add('show');
+            //         localStorage.setItem('popupShown', 'true');
+            //     }
+            //     // setTimeout(function() {
+            //     // }, 1000);
+            // }
+            // // Call the function with a delay of 3000 milliseconds (3 seconds)
+            // showPopupDelayed("welcome");
+        // };
+
+        // session_login = ?php echo $login; ?>;
+        // console.log("session login in JS" + session_login);
+        // if(session_login == 1){
+        //     console.log(session_login);
+        //     showPopupDelayed("login");
+        // }
+        //! important end
 
         var buttonElement = document.getElementById('downloadButton');
 
@@ -842,7 +896,7 @@ console.log(user_prompts);
     </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="main.js"></script>
+    <!-- <script src="main.js"></script> -->
     <script>
     <?php
             if($l==1 && isset($_SESSION['login_msg'])){ ?>

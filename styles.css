@@ -427,3 +427,40 @@ body {
     
     /* @media screen and (max-width: 390px) {   
     } */
+
+    /* ? pop-up code start  */
+    #popup {
+        /* display: none; */
+        position: fixed;
+        top: 50%;
+        right: -10%;
+        transform: translate(100%, -165%);
+        background-color: #fff;
+        padding: 20px;
+        padding-top: 0px;
+        padding-right: 0px;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        transition: transform 0.5s ease-in-out;
+        border-radius: 5px;
+        z-index: 333;
+    }
+
+    #popup.show {
+        transform: translate(-65%, -165%);
+    }
+    /* transform: translate(0, -50%); */
+    #popup button {
+        border: 1px solid black;
+        border-radius: 3px;
+        cursor: pointer;
+        float: right;
+    }
+    #popup h2 {
+        margin: 0px;
+        margin-top: 5px;
+    }
+    #popup p {
+        padding-right: 20px;
+    }
+    /* ? pop-up code end  */
