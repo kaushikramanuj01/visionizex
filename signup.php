@@ -78,6 +78,7 @@
         text-align: left;
     }
     .form-group input {
+        color: white;
         /* width: calc(100% - 20px); */
         width: 100%;
         padding: 6px;
@@ -87,7 +88,7 @@
         display: block;
         margin-bottom: 10px;
         box-sizing: border-box;
-        background-color: #333;
+        background-color: #333 !important;
     }
     .form-group input:focus {
         outline: none;
@@ -215,6 +216,12 @@
             font-size: 15px;
         }
     }
+    /* input:-internal-autofill-selected { */
+        /* background-color: #your-desired-color; Override autofill background color */
+        /* color: #333; Change the text color */
+        /* color: white; 
+        background-color: #333;
+    } */
     </style>
 </head>
 
@@ -272,32 +279,32 @@
         var password = $("#password").val();
 
         // ! data validation code start
-        if (isValidEmail(email)) {
-            document.getElementById('emailValidation').style.display = 'none';
-        } else {
-            $("#emailValidation").text("Plese enter valid Email.");
-            var error = 1;
-            document.getElementById('emailValidation').style.display = 'block';
-        }
-        var checknameresult = checkname(name);
-        if(checknameresult == 0){
-            var msg = "Please enter your Name.";
-            $("#nameValidation").text(msg);
-            var error = 1;
-            document.getElementById('nameValidation').style.display = 'block';
-        } else{
-            $("#name-error").text("");
-            document.getElementById('nameValidation').style.display = 'none';
-        }
-        var checkpassresult = checkpassword(password);
-        $("#passValidation").text(checkpassresult.msg);
-        if(checkpassresult.status==0){
-            var error = 1;
-            document.getElementById('passValidation').style.display = 'block';
-        }else{
-            document.getElementById('passValidation').style.display = 'none';
-        }
-        if(error == 1){ return; }
+            if (isValidEmail(email)) {
+                document.getElementById('emailValidation').style.display = 'none';
+            } else {
+                $("#emailValidation").text("Plese enter valid Email.");
+                var error = 1;
+                document.getElementById('emailValidation').style.display = 'block';
+            }
+            var checknameresult = checkname(name);
+            if(checknameresult == 0){
+                var msg = "Please enter your Name.";
+                $("#nameValidation").text(msg);
+                var error = 1;
+                document.getElementById('nameValidation').style.display = 'block';
+            } else{
+                $("#name-error").text("");
+                document.getElementById('nameValidation').style.display = 'none';
+            }
+            var checkpassresult = checkpassword(password);
+            $("#passValidation").text(checkpassresult.msg);
+            if(checkpassresult.status==0){
+                var error = 1;
+                document.getElementById('passValidation').style.display = 'block';
+            }else{
+                document.getElementById('passValidation').style.display = 'none';
+            }
+            if(error == 1){ return; }
         // ! data validation code end
         
         // const url = "api/signup";
@@ -317,11 +324,9 @@
 
         function successCallback(data) {
             var jsonString = JSON.stringify(data);
-
             var jsondata = JSON.parse(jsonString);
 
             console.log("success");
-
             showPopupMessage(jsondata.message, jsondata.status);
 
             if (jsondata.success == 1) {
@@ -335,7 +340,6 @@
             //     console.log(data.generatedText);
             //     $("#generatedText").text(data.generatedText);
             //     $("#generatedText").show();
-
             // } else {
             //     console.error('API response does not contain generatedText field.');
             // }
@@ -357,37 +361,28 @@
         // generateText(inputText);
     });
 
-
     // function showPopupMessage(message, status) {
     //     console.log("showPopupMessage show ");
-
     //     var popup = document.getElementById('messagePopup');
-
     //     // Set the appropriate class based on status
     //     var className = (status === 1) ? 'success' : 'danger';
-
     //     // Set the message and class
     //     popup.innerHTML = message;
     //     popup.className = 'message-popup ' + className;
-
     //     // Show the popup
     //     popup.style.display = 'block';
-
     //     // Hide the popup after 4 seconds
     //     setTimeout(function() {
     //         popup.style.display = 'none';
     //     }, 8000);
     // }
-
     // Example usage
     // Replace 'Your message here', 0 with your actual message and status
     // showPopupMessage('Your message here', 0);
-
     // function validateForm() {
     //     var name = document.getElementById('name').value;
     //     var email = document.getElementById('email').value;
     //     var password = document.getElementById('password').value;
-
     //     // Simple validation for demonstration purposes
     //     if (!name || !email) {
     //         alert('Please enter your name and email.');
@@ -398,10 +393,7 @@
     //         alert('Registration successful!');
     //     }
     // }
-});
-
+    });
     </script>
-
 </body>
-
 </html>

@@ -59,11 +59,11 @@ if ($action == "signup") {
             $response['rrk'] = $rk;
             // $IIS->setusername($name);
             // $IIS->setuseremail($email);
+            // Set a session variable
             $_SESSION['useremail'] = $email;
             $_SESSION['sername'] = $name;
-
-            // Set a session variable
             $_SESSION['login'] = 1;
+            $_SESSION['login_msg'] = 1;
 
             // Get the session variable
             if(isset($_SESSION['login'])) {

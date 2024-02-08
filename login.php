@@ -2,14 +2,10 @@
 require_once "config/init.php";
 include "navbar.php";
 
-// $p = $_GET['p'] ? $_GET['p'] : "";
-$p = isset($_GET['p']) ? $_GET['p'] : 0;
-
 if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
     header("location:index.php" );
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,6 +77,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
     }
 
     .form-group input {
+        color: white;
         /* width: calc(100% - 20px); */
         width: 100%;
         padding: 6px;
@@ -90,7 +87,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
         display: block;
         margin-bottom: 10px;
         box-sizing: border-box;
-        background-color: #333;
+        background-color: #333 !important;
     }
 
     .form-group input:focus {
@@ -164,6 +161,20 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
         background-size: cover;
         box-sizing: border-box;
     }
+    /* Target autofilled input fields */
+    /* input:-webkit-autofill { */
+    /* input:-internal-autofill-selected { */
+        /* background-color: #your-desired-color; Override autofill background color */
+        /* color: #333; Change the text color */
+        /* color: white; 
+        background-color: #333;
+    } */
+    /* .login-form input[type="text"]:-webkit-autofill {
+    background-color: #333 !important;
+        } */
+            /* .login-form input:-webkit-autofill {
+            background-color: #333 !important;
+        } */
 
     @media (max-width: 1000px) {
         .byk {
@@ -205,7 +216,6 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
             font-size: 15px;
         }
     }
-
     </style>
 </head>
 
@@ -246,14 +256,11 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
     <!-- <script src="main.js"></script> -->
 
     <script>
-    // inputText
     document.addEventListener("DOMContentLoaded", function() {
-    // Your inline JavaScript code that relies on functions or variables from main.js
-
-    p = <?php echo $p; ?>;
-    if (p == 1) {
-        showPopupMessage("finaly kaushik , Phodenge!!", 1);
-    }
+   
+    var userPromptInfo = prompter();
+    var len_prompt = userPromptInfo.length;
+    var user_prompt = userPromptInfo.prompt;
 
     $("#login-button").on("click", function() {
         var userid = $("#userid").val();
@@ -295,15 +302,12 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
 
             console.log("success");
 
-            // showPopupMessage(jsondata.message, jsondata.status);
+            showPopupMessage(jsondata.message, jsondata.status);
 
             if (jsondata.success == 1) {
                 var parameter1 = '1'; // for login indicate
-                var parameter2 = '1'; // for prompt is set indicate
                 var redirectUrl = 'index.php?l=' + encodeURIComponent(parameter1);
-                if (p == 1) {
-                    redirectUrl = redirectUrl + '&p=' + encodeURIComponent(parameter2);
-                }
+                             
                 window.location.href = redirectUrl;
             }
         }
@@ -321,21 +325,17 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
     //     // Simple validation for demonstration purposes
     //     if (!userid) {
     //         document.getElementById('useridValidation').style.display = 'block';
-
     //     } else {
     //         document.getElementById('useridValidation').style.display = 'none';
     //     }
-
     //     if (!password || password.length < 6) {
     //         document.getElementById('passwordValidation').style.display = 'block';
     //     } else {
     //         document.getElementById('passwordValidation').style.display = 'none';
     //     }
-
-    //     // Implement your server-side validation and authentication logic here
+    //     Implement your server-side validation and authentication logic here
     // }
-});
-
+    });
     </script>
 
 </body>

@@ -48,10 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // $userData = $SubDB->execute("tblgenerated", $where,"","");
             $current_credit = $SubDB->countcredit();
             // if(sizeof($userData)<5){
-            if($current_credit>5){
+            if($current_credit>=5){
 
                 $OPENAI_API_KEY = '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'; //OpenAI API key
-                $url = 'https://api.openai.com/v1/chat/completions';
+                                $url = 'https://api.openai.com/v1/chat/completions';
                 // $url = 'https://api.openai.com/v1/embeddings';
                 // "model" => "text-embedding-ada-002",
                 $data = array(
