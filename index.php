@@ -23,6 +23,7 @@ console.log(user_prompts);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="main.js"></script>
+    <link rel="icon" href="images/logo/favicon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <title>Navigation Bar</title>
