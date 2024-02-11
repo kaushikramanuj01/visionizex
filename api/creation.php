@@ -57,7 +57,51 @@ if ($action == "gallery") {
     $response['nextpage'] = $pageno+1;
 
 
-} else {
+}else if ($action == "gallery2") {
+
+    $pageno = (int) isset($data['pageno']) ? $data['pageno'] : '';
+    $perpage = (int) isset($data['perpage']) ? $data['perpage'] : '';
+
+    $skip = ($pageno - 1) * $perpage;
+    $response['skip'] =$skip;
+
+    $where = array(); // Customize the WHERE clause as needed
+    $sort = "id DESC"; // Customize the sorting as needed
+    $allimages = $SubDB->execute("tblgenerated", $where,$sort,$perpage,$skip);
+
+    $response['allimages'] = $allimages;
+    $data = "";
+    $fullimgs = [];
+    $rk = 0;
+    foreach($allimages as $value){
+        $image_path = $value['local_img'];
+        $_id = $value['_id'];
+
+        if($image_path!==""){
+            $final_img_path = "images/".$image_path;
+        }else{
+            $final_img_path = $value['image_url'];
+        }
+        $fullimgs[$rk]['final_img_path'] = $final_img_path;
+        $fullimgs[$rk]['image_path_local'] = $image_path;
+        $rk++;
+    }
+    $response['fullimgs'] = $fullimgs;
+
+    $message = "Data found.";
+    $status = 1;
+
+    $loadmore = 1;
+    if(sizeof($allimages) < $perpage){
+        $loadmore = 0;
+    }
+
+    $response['loadmore'] = $loadmore;
+    // $response['data'] = $data;
+    $response['nextpage'] = $pageno+1;
+
+
+}else {
 $message = "Invalid action.";
 }
 
