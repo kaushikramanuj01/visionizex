@@ -214,6 +214,11 @@ else if ($action == "compare-code") {
                 $db_email = $userData[0]['email'];
                 $password = $userData[0]['password'];
                     
+                $response['d_name'] = $name;
+                $response['d_db_email'] = $db_email;
+                $response['d_password'] = $password;
+                $response['d_db_otp'] = $db_otp;
+
                 $inst = array(
                     "name" => $name,
                     "email" => $db_email,
@@ -221,7 +226,9 @@ else if ($action == "compare-code") {
                     "otp" => $db_otp // save otp for record 
                 );
                 $where = array(); // Use appropriate where conditions
-                $SubDB->performCRUD("tblcustmaster", "i", $inst, $where);
+                $debug_msg = $SubDB->performCRUD("tblcustmaster", "i", $inst, $where);
+
+                $response['debug_msg'] = $debug_msg;
 
                 $credit_id = $SubDB->generateUniqueID();
                 $inst = array(
