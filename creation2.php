@@ -264,7 +264,7 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
                         // Access properties of each object inside the array
                         console.log(item.final_img_path); // You can do whatever you want with each item here
 
-                        var html_data = '<div class="img_div"><a href="#"><img src="' + item.final_img_path + '" alt="" srcset="" class="gallery-image"></a></div>';
+                        var html_data = '<div class="img_div"><a href="#"><img src="' + item.final_img_path + '" alt="" srcset="" class="gallery-image" loading="lazy"></a></div>';
 
                         gallery.innerHTML += html_data;
 

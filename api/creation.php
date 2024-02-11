@@ -67,7 +67,7 @@ if ($action == "gallery") {
 
     $where = array(); // Customize the WHERE clause as needed
     $sort = "id DESC"; // Customize the sorting as needed
-    $allimages = $SubDB->execute("tblgenerated", $where,$sort,$perpage,$skip);
+    $allimages = $SubDB->execute("tblgenerated2", $where,$sort,$perpage,$skip);
 
     $response['allimages'] = $allimages;
     $data = "";
