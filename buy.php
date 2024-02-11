@@ -8,7 +8,6 @@ require('razorpay-php-2.9.0/Razorpay.php');
 $login = $_SESSION['login'];
 if($login !== 1){
     header("location:login.php" );
-
 }
 
 use Razorpay\Api\Api;
@@ -16,7 +15,6 @@ $api = new Api($keyId, $keySecret);
 
 // We create an razorpay order using orders api
 // Docs: https://docs.razorpay.com/docs/orders
-
 
 $package = isset($_GET['pack']) ? $_GET['pack'] : 0;
 $useremail = isset($_SESSION['useremail']) ? ($_SESSION['useremail']) : "";
@@ -29,14 +27,12 @@ $price = (int)$package_info['amount'];
 $credit = (int)$package_info['credit'];
 
 // echo "\nthis is price".$price."\n";
-
 // $price = 1500;
 // $credit = 4000;
 
 $_SESSION['price'] = $price;
 $_SESSION['credit'] = $credit;
 $_SESSION['package'] = $package;
-
 
 // Array ( [0] => Array ( [id] => 1 [_id] => 62ecd05a06ad68e [name] => Classic [code] => 2 [amount] => 20 [duration] => 30 [isactive] => 1 [credit] => 2000 [date] => 2024-01-26 20:45:38 ) )
 
@@ -99,113 +95,90 @@ if($useremail !== ""){
         $json = json_encode($data);
         ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Buy</title>
     <style>
-    .main_container {
-        /* background-color: black; */
-        width: -webkit-fill-available;
-        height: 90%;
-        border: 2px solid;
-        display: flex;
-        justify-content: center;
-    }
-
-    .sub_div {
-        width: 47%;
-        /* background: aqua; */
-        font-family: sans-serif;
-    }
-
-    .rj-div {
-        display: flex;
-        /* background: antiquewhite; */
-        align-items: center;
-        width: max-content;
-        height: max-content;
-        margin-top: 7vh;
-        cursor: pointer;
-    }
-
-    .rj-div img {
-        width: 17px;
-    }
-
-    .rj-div span {
-        font-size: 14px;
-        margin-left: 5px;
-    }
-
-    .rj-b {
-        margin-top: 6vh;
-        /* text-align-last: center; */
-    }
-
-    .rj-b span {
-        font-size: 21px;
-
-    }
-
-    .rj-c {
-        margin-top: 25px;
-        border-bottom: 2px solid black;
-    }
-
-    .rv-a {
-        display: inline-block;
-    }
-
-    .rv-b {
-        display: inline-block;
-        float: right;
-    }
-
-    .rj-d {
-        margin-top: 7px;
-    }
-
-    .rv-c {
-        float: right;
-    }
-
-    .rj-e {
-        margin-top: 15px;
-        border-bottom: 2px solid black;
-    }
-
-    .rv-d {
-        float: right;
-
-    }
-
-    .rj-f {
-        margin-top: 20px;
-    }
-
-    .rv-e {
-        float: right;
-    }
-
-    .razorpay-payment-button {
-        margin: 5vh 0px;
-        padding: 3px 14px;
-        border-radius: 5px;
-        border: 1px solid black;
-        cursor: pointer;
-    }
+        .main_container {
+            /* background-color: black; */
+            width: -webkit-fill-available;
+            height: 90%;
+            border: 2px solid;
+            display: flex;
+            justify-content: center;
+        }
+        .sub_div {
+            width: 47%;
+            /* background: aqua; */
+            font-family: sans-serif;
+        }
+        .rj-div {
+            display: flex;
+            /* background: antiquewhite; */
+            align-items: center;
+            width: max-content;
+            height: max-content;
+            margin-top: 7vh;
+            cursor: pointer;
+        }
+        .rj-div img {
+            width: 17px;
+        }
+        .rj-div span {
+            font-size: 14px;
+            margin-left: 5px;
+        }
+        .rj-b {
+            margin-top: 6vh;
+            /* text-align-last: center; */
+        }
+        .rj-b span {
+            font-size: 21px;
+        }
+        .rj-c {
+            margin-top: 25px;
+            border-bottom: 2px solid black;
+        }
+        .rv-a {
+            display: inline-block;
+        }
+        .rv-b {
+            display: inline-block;
+            float: right;
+        }
+        .rj-d {
+            margin-top: 7px;
+        }
+        .rv-c {
+            float: right;
+        }
+        .rj-e {
+            margin-top: 15px;
+            border-bottom: 2px solid black;
+        }
+        .rv-d {
+            float: right;
+        }
+        .rj-f {
+            margin-top: 20px;
+        }
+        .rv-e {
+            float: right;
+        }
+        .razorpay-payment-button {
+            margin: 5vh 0px;
+            padding: 3px 14px;
+            border-radius: 5px;
+            border: 1px solid black;
+            cursor: pointer;
+        }
     </style>
 </head>
-
 <body>
-
-
     <!-- <button id="backButton">Go Back</button> -->
 
     <div class="main_container">
@@ -263,21 +236,19 @@ if($useremail !== ""){
 
         </div>
     </div>
+
+    <script>
+        document.getElementById("backButton").addEventListener("click", function() {
+            goBack();
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
-
 </html>
-
-
-<script>
-document.getElementById("backButton").addEventListener("click", function() {
-    goBack();
-});
-
-function goBack() {
-    window.history.back();
-}
-</script>
 <?php
-        
     }
 }
+?>
