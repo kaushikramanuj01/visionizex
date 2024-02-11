@@ -1,7 +1,6 @@
 <?php
 require_once 'config/init.php';
 include 'navbar.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,217 +13,217 @@ include 'navbar.php';
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+    
+    * {
+      margin: 0;
+      box-sizing: border-box;
+    }     
+    body {
+      /* background-color: #6a9ac4; */
+      background-color: #333;
+    }
+    #contact {
+      /* background-color: #6a9ac4; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-* {
-  margin: 0;
-  box-sizing: border-box;
-}
+    .contact-box {
+      width: clamp(100px, 90%, 1000px);
+      margin: 40px 50px;
+      display: flex;
+      flex-wrap: wrap;
+      height: 515px;
+    }
+    .contact-links, .contact-form-wrapper {
+      width: 50%;
+      padding: 8% 5% 10% 5%;
+      padding-bottom: 0px;
 
-body {
-  /* background-color: #6a9ac4; */
-  background-color: #333;
-}
+    }
+    .contact-links {
+      background-color: #1f2e43;
+      background:
+      radial-gradient(
+        circle at 55% 92%, #768493 0 12%, transparent 12.2%
+      ),
+      radial-gradient(
+        circle at 94% 77%, #617082 0 10%, transparent 10.2%
+      ),
+      radial-gradient(
+        circle at 20% max(78%, 350px), #404c5a 0 7%, transparent 7.2%
+      ),
+      radial-gradient(
+        circle at 0% 0%, #3b4655 0 40%, transparent 40.2%
+      ),#37393c;
+      border-radius: 10px 0 0 10px;
+      /* background: radial-gradient( circle at 55% 92%, #5072a7 0 12%, transparent 12.2% ),
+      radial-gradient( circle at 94% 77%, #38516b 0 10%, transparent 10.2% ),
+      radial-gradient( circle at 20% max(78%, 350px), #6d8aa9 0 7%, transparent 7.2% ),
+      radial-gradient( circle at 0% 0%, #788a9d 0 40%, transparent 40.2% ),
+      #6b7d8b; */
+    }
 
-#contact {
-  /* background-color: #6a9ac4; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    .contact-form-wrapper {
+      background-color: #414345;
+      /* #37393c */
+      border-radius: 0 10px 10px 0;
+    }
 
-.contact-box {
-  width: clamp(100px, 90%, 1000px);
-  margin: 40px 50px;
-  display: flex;
-  flex-wrap: wrap;
-}
+    @media only screen and (max-width: 800px) {
+      .contact-links, .contact-form-wrapper {
+        width: 100%;
+      }
+      .contact-links {
+        border-radius: 10px 10px 0 0;
+      }
+      .contact-form-wrapper {
+        border-radius: 0 0 10px 10px;
+      }
+    }
 
-.contact-links, .contact-form-wrapper {
-  width: 50%;
-  padding: 8% 5% 10% 5%;
-}
+    @media only screen and (max-width: 400px) {
+      .contact-box {
+        width: 95%;
+        margin: 8% 5%;
+      }
+    }
 
+    h2 {
+      font-family: 'Arimo', sans-serif;
+      color: #fff;
+      font-size: clamp(30px, 6vw, 60px);
+      letter-spacing: 2px;
+      text-align: center;
+      transform: scale(.95, 1);
+    }
 
-.contact-links {
-  background-color: #1f2e43;
-  background:
-  radial-gradient(
-      circle at 55% 92%, #768493 0 12%, transparent 12.2%
-    ), 
-    radial-gradient(
-      circle at 94% 77%, #617082 0 10%, transparent 10.2%
-    ), 
-    radial-gradient(
-      circle at 20% max(78%, 350px), #404c5a 0 7%, transparent 7.2%
-    ), 
-    radial-gradient(
-      circle at 0% 0%, #3b4655 0 40%, transparent 40.2%
-    ),#37393c;
-  border-radius: 10px 0 0 10px;
-  
-  /* background: radial-gradient( circle at 55% 92%, #5072a7 0 12%, transparent 12.2% ), 
-            radial-gradient( circle at 94% 77%, #38516b 0 10%, transparent 10.2% ), 
-            radial-gradient( circle at 20% max(78%, 350px), #6d8aa9 0 7%, transparent 7.2% ), 
-            radial-gradient( circle at 0% 0%, #788a9d 0 40%, transparent 40.2% ), 
-            #6b7d8b; */
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-top: 50px;
+    }
 
-}
+    .link {
+      margin: 10px;
+      cursor: pointer;
+    }
 
-.contact-form-wrapper {
-  background-color: #414345;   
-  /* #37393c */
-  border-radius: 0 10px 10px 0;
-}
+    .link img {
+      width: 45px;
+      height: 45px;
+      filter:
+        hue-rotate(220deg)
+        drop-shadow(2px 4px 4px #0006);
+      transition: 0.2s;
+      user-select: none;
+    }
 
-@media only screen and (max-width: 800px) {
-  .contact-links, .contact-form-wrapper {
-    width: 100%;
-  }
-  
-  .contact-links {
-    border-radius: 10px 10px 0 0;
-  }
-  
-  .contact-form-wrapper {
-    border-radius: 0 0 10px 10px;
-  }
-}
+    .link img:hover {
+      transform: scale(1.1, 1.1);
+    }
 
-@media only screen and (max-width: 400px) {
-  .contact-box {
-    width: 95%;
-    margin: 8% 5%;
-  }
-}
+    .link img:active {
+      transform: scale(1.1, 1.1);
+      filter:
+        hue-rotate(220deg)
+        drop-shadow(2px 4px 4px #222)
+        sepia(0.3);
+    }
 
-h2 {
-  font-family: 'Arimo', sans-serif;
-  color: #fff;
-  font-size: clamp(30px, 6vw, 60px);
-  letter-spacing: 2px;
-  text-align: center;
-  transform: scale(.95, 1);
-}
+    .form-item {
+      position: relative;
+    }
 
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-top: 50px;
-}
+    label, input, textarea {
+      font-family: 'Poppins', sans-serif;
+    }
 
-.link {
-  margin: 10px;
-  cursor: pointer;
-}
+    label {
+      position: absolute;
+      top: 10px;
+      left: 2%;
+      color: #999;
+      font-size: clamp(14px, 1.5vw, 18px);
+      pointer-events: none;
+      user-select: none;
+    }
 
-.link img {
-  width: 45px;
-  height: 45px;
-  filter: 
-    hue-rotate(220deg)
-    drop-shadow(2px 4px 4px #0006);
-  transition: 0.2s;
-  user-select: none;
-}
+    input, textarea {
+      width: 100%;
+      outline: 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      /* margin-bottom: 20px; */
+      padding: 12px;
+      font-size: clamp(15px, 1.5vw, 18px);
+    }
 
-.link img:hover {
-  transform: scale(1.1, 1.1);
-}
+    input:focus+label,
+    input:valid+label,
+    textarea:focus+label,
+    textarea:valid+label {
+      font-size: clamp(13px, 1.3vw, 16px);
+      color: #777;
+      top: -20px;
+      transition: all .225s ease;
+    }
 
-.link img:active {
-  transform: scale(1.1, 1.1);
-  filter: 
-    hue-rotate(220deg)
-    drop-shadow(2px 4px 4px #222)
-    sepia(0.3);
-}
+    .submit-btn {
+      background-color: #fd917e;
+      filter: drop-shadow(2px 2px 3px #0003);
+      color: #fff;
+      font-family: "Poppins",sans-serif;
+      font-size: clamp(16px, 1.6vw, 18px);
+      display: block;
+      padding: 12px 20px;
+      margin: 2px auto;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      user-select: none;
+      transition: 0.2s;
+    }
 
-.form-item {
-  position: relative;
-}
+    .submit-btn:hover {
+      transform: scale(1.1, 1.1);
+    }
 
-label, input, textarea {
-  font-family: 'Poppins', sans-serif;
-}
+    .submit-btn:active {
+      transform: scale(1.1, 1.1);
+      filter: sepia(0.5);
+    }
 
-label {
-  position: absolute;
-  top: 10px;
-  left: 2%;
-  color: #999;
-  font-size: clamp(14px, 1.5vw, 18px);
-  pointer-events: none;
-  user-select: none;
-}
+    @media only screen and (max-width: 800px) {
+      h2 {
+        font-size: clamp(40px, 10vw, 60px);
+      }
+    }
 
-input, textarea {
-  width: 100%;
-  outline: 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  padding: 12px;
-  font-size: clamp(15px, 1.5vw, 18px);
-}
-
-input:focus+label, 
-input:valid+label, 
-textarea:focus+label, 
-textarea:valid+label {
-  font-size: clamp(13px, 1.3vw, 16px);
-  color: #777;
-  top: -20px;
-  transition: all .225s ease;
-}
-
-.submit-btn {
-  background-color: #fd917e;
-  filter: drop-shadow(2px 2px 3px #0003);
-  color: #fff;
-  font-family: "Poppins",sans-serif;
-  font-size: clamp(16px, 1.6vw, 18px);
-  display: block;
-  padding: 12px 20px;
-  margin: 2px auto;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  user-select: none;
-  transition: 0.2s;
-}
-
-.submit-btn:hover {
-  transform: scale(1.1, 1.1);
-}
-
-.submit-btn:active {
-  transform: scale(1.1, 1.1);
-  filter: sepia(0.5);
-}
-
-@media only screen and (max-width: 800px) {
-  h2 {
-    font-size: clamp(40px, 10vw, 60px);
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  h2 {
-    font-size: clamp(30px, 12vw, 60px);
-  }
-  
-  .links {
-    padding-top: 30px;
-  }
-  
-  .link img {
-    width: 38px;
-    height: 38px;
-  }
-}
-
+    @media only screen and (max-width: 400px) {
+      h2 {
+        font-size: clamp(30px, 12vw, 60px);
+      }
+      .links {
+        padding-top: 30px;
+      }
+      .link img {
+        width: 38px;
+        height: 38px;
+      }
+    }
+    .validation-indicator {
+        display: block;
+        /* display: none; */
+        font-size: 16px;
+        color: #dc3545;
+        text-align: left;
+        margin-bottom: 20px;
+        font-family: 'Poppins', sans-serif;
+    }
   </style>
 </head>
 <body>
@@ -248,26 +247,101 @@ textarea:valid+label {
         </div>
       </div>
       <div class="contact-form-wrapper">
-        <form>
+        <form id="contactForm" method="post">
           <div class="form-item">
-            <input type="text" name="sender" required>
+            <!-- <input type="text" name="sender" id="name"> -->
+            <input type="text" name="sender" id="name" required>
             <label>Name:</label>
+            <div class="validation-indicator" id="nameValidation"> </div>
           </div>
           <div class="form-item">
-            <input type="text" name="email" required>
+            <input type="text" name="email" id="email" required>
             <label>Email:</label>
+            <!-- <input type="text" name="email" id="email"> -->
+            <div class="validation-indicator" id="emailValidation"> </div>
           </div>
           <div class="form-item">
-            <textarea class="" name="message" required></textarea>
+            <textarea class="" name="message" id="msg" required></textarea>
             <label>Message:</label>
+            <div class="validation-indicator" id="msgValidation"> </div>
+            <!-- <textarea class="" name="message" id="msg"></textarea> -->
           </div>
-          <button class="submit-btn">Send</button>  
+          <button type="button" class="submit-btn" id="contact-btn">Send</button>
         </form>
       </div>
     </div>
   </section>
   <script src="main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+      $("#contact-btn").on("click", function() {
+        console.log("clicked btn");
+
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var user_msg = document.getElementById("msg").value;
+        
+        // ! data validation start
+          if (isValidEmail(email)) {
+              // document.getElementById('emailValidation').style.display = 'none';
+              $("#emailValidation").text("");
+          } else {
+              $("#emailValidation").text("Plese enter valid Email.");
+              var error = 1;
+              // document.getElementById('emailValidation').style.display = 'block';
+          }
+          var checknameresult = checkname(name);
+          if(checknameresult == 0){
+              var msg = "Please enter your Name.";
+              $("#nameValidation").text(msg);
+              var error = 1;
+            } else{
+                $("#nameValidation").text("");
+            }
+            var checkmsgresult = checkname(user_msg);
+            if(checkmsgresult == 0){
+                var msg = "Please enter your Message.";
+                $("#msgValidation").text(msg);
+                var error = 1;
+            } else{
+                $("#msgValidation").text("");
+            }
+            if(error == 1){ return; }
+        // ! data validation end
+
+        const url = "api/contact";
+        const method = "POST";
+        const headerdata = {
+          "Content-Type": "application/json"
+        };
+        const paramsdata = JSON.stringify({
+          name: name,
+          email: email,
+          user_msg: user_msg,
+          action: "insertcontact",
+        });
+
+        ajaxrequest(method, url, headerdata, paramsdata, successCallback, errorCallback)
+
+        function errorCallback(error) {
+          console.log("err");
+          // console.error('Error:', error);
+          // $(".generation_msg_box").hide();
+          showPopupMessage("Server Error", 0);
+        }
+
+        function successCallback(data) {
+          console.log("success");
+          showPopupMessage(data.message, 1);
+          document.getElementById("contactForm").reset();
+        }
+
+      });
+
+    });
+  </script>
 </body>
 </html>

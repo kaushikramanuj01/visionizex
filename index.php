@@ -26,7 +26,7 @@ console.log(user_prompts);
     <link rel="icon" href="images/logo/favicon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-    <title>Navigation Bar</title>
+    <title>VisionizeX</title>
     <link rel="stylesheet" href="index_style.css">
 </head>
 

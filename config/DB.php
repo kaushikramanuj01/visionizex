@@ -2,7 +2,6 @@
 
 class SubDB{
 
-
 function performCRUD($tableName, $operation, $data, $where)
 {
     global $conn;
@@ -179,6 +178,22 @@ function generateUniqueID() {
         return $package_info[0];
     }
 
+    function sanitize($input) {
+        // Remove leading and trailing whitespace
+        $input = trim($input);
+        // Remove backslashes
+        $input = stripslashes($input);
+        // Convert special characters to HTML entities to prevent XSS attacks
+        $input = htmlspecialchars($input);
+
+        return $input;
+    }
+    
+    function generateOTP() {
+        // Generate a random 6-digit number
+        $otp = rand(100000, 999999);
+        return $otp;
+    }
 
 }
 

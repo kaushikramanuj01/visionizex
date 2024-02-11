@@ -25,31 +25,190 @@ function ajaxrequest(method, url, headerdata, paramsdata, successCallback, error
         success: successCallback,
     });
 }
+// ! old new // importaant
+
+    // function showPopupMessage(message, status) {
+    //     // Check if outerDiv already exists
+    //     var outerDiv = document.getElementById('outerDiv');
+    //     if (!outerDiv) {
+    //         // If outerDiv does not exist, create it
+    //         outerDiv = document.createElement('div');
+    //         outerDiv.id = 'outerDiv'; // Set ID for the outer div
+    //         // Insert outerDiv as the first child of the body
+    //         var firstChild = document.body.firstChild;
+    //         document.body.insertBefore(outerDiv, firstChild);
+    //     }
+
+    //     // Create a div element for the message popup container
+    //     var messagePopupContainer = document.createElement('div');
+    //     messagePopupContainer.className = 'message-popup-container';
+
+    //     // Create a div element for the message popup
+    //     var messagePopupDiv = document.createElement('div');
+    //     messagePopupDiv.className = 'message-popup';
+    //     // Set the appropriate class based on status
+    //     var className = (status === 1) ? 'success' : 'danger';
+    //     messagePopupDiv.classList.add(className);
+    //     // Set your HTML content (replace this with your actual HTML content)
+    //     messagePopupDiv.innerHTML = '<p>Your HTML content goes here</p>';
+    //     messagePopupDiv.innerHTML = message;
+
+    //     // Append the messagePopupDiv to the messagePopupContainer
+    //     messagePopupContainer.appendChild(messagePopupDiv);
+
+    //     // Insert the messagePopupContainer as the first child of outerDiv
+    //     outerDiv.insertBefore(messagePopupContainer, outerDiv.firstChild);
+
+    //     // Show the popup with animation
+    //     messagePopupDiv.style.opacity = '1';
+
+    //     // Shift existing pop-up messages down
+    //     var containers = document.querySelectorAll('.message-popup-container');
+    //     var shiftAmount = messagePopupContainer.offsetHeight + 10; // Adjust for margin
+    //     containers.forEach(function(container) {
+    //         container.style.transform = 'translateY(' + shiftAmount + 'px)';
+    //     });
+
+    //     // Hide the popup after 4 seconds (8000 milliseconds)
+    //     setTimeout(function () {
+    //         // Remove the messagePopupContainer after hiding
+    //         // messagePopupContainer.remove();
+    //         // // Shift existing pop-up messages back up
+    //         // containers.forEach(function(container) {
+    //         //     container.style.transform = 'translateY(0)';
+    //         // });
+    //     }, 8000); // Adjusted timeout to 8 seconds (8000 milliseconds)
+    // }
+
+// ! old new // Important
 
 function showPopupMessage(message, status) {
-    // Create a div element
+    // Check if outerDiv already exists
+    var outerDiv = document.getElementById('outerDiv');
+    if (!outerDiv) {
+        // If outerDiv does not exist, create it
+        outerDiv = document.createElement('div');
+        outerDiv.id = 'outerDiv'; // Set ID for the outer div
+        // Insert outerDiv as the first child of the body
+        var firstChild = document.body.firstChild;
+        document.body.insertBefore(outerDiv, firstChild);
+    }
+
+    // Create a div element for the message popup
     var messagePopupDiv = document.createElement('div');
-    // Set attributes for the div
     messagePopupDiv.id = 'messagePopup';
     messagePopupDiv.className = 'message-popup';
-    // Get a reference to the first child of the body
-    var firstChild = document.body.firstChild;
-    // Insert the div before the first child
-    document.body.insertBefore(messagePopupDiv, firstChild);
+    // Set your HTML content (replace this with your actual HTML content)
+    messagePopupDiv.innerHTML = '<p>'+message+'</p>';
+
+    // Append the messagePopupDiv to the outerDiv
+    outerDiv.appendChild(messagePopupDiv);
+
     console.log("showPopupMessage show ");
-    var popup = document.getElementById('messagePopup');
+    // Get the first child of outerDiv, which will be the oldest messagePopupDiv
+    var firstChild = outerDiv.firstChild;
+
+    // Insert the messagePopupDiv before the firstChild (at the beginning)
+    outerDiv.insertBefore(messagePopupDiv, firstChild);
+
+    // var popup = document.getElementById('messagePopup');
+    // var popup = outerDiv.lastChild;
+    var popup = outerDiv.firstChild;
+
     // Set the appropriate class based on status
     var className = (status === 1) ? 'success' : 'danger';
+    console.log(className);
     // Set the message and class
     popup.innerHTML = message;
     popup.className = 'message-popup ' + className;
     // Show the popup
-    popup.style.display = 'block';
-    // Hide the popup after 4 seconds
+
+    // Show the popup with animation
+    outerDiv.style.display = 'block';
+    popup.style.opacity = '1';
+
+    // Hide the popup after 4 seconds (8000 milliseconds)
     setTimeout(function () {
-        popup.style.display = 'none';
-    }, 8000);
+        outerDiv.style.display = 'none';
+        // Remove the messagePopupDiv after hiding
+        messagePopupDiv.remove();
+    }, 8000); // Adjusted timeout to 8 seconds (8000 milliseconds)
 }
+
+
+// function showPopupMessage(message, status) {
+
+//     var outerDiv = document.getElementById('outerDiv');
+//     if(outerDiv){
+//         // Create a div element for your message popup
+//         var messagePopupDiv = document.createElement('div');
+//         messagePopupDiv.id = 'messagePopup';
+//         messagePopupDiv.className = 'message-popup';
+//         // Set your HTML content (replace this with your actual HTML content)
+//         messagePopupDiv.innerHTML = '<p>Your HTML content goes here</p>';
+
+//         outerDiv.appendChild(messagePopupDiv);
+//     }else{
+//          // Create a div element
+//         var outerDiv = document.createElement('div');
+//         outerDiv.id = 'outerDiv'; // Set ID for the outer div
+//         // Create a div element for your message popup
+//         var messagePopupDiv = document.createElement('div');
+//         messagePopupDiv.id = 'messagePopup';
+//         messagePopupDiv.className = 'message-popup';
+//         // Set your HTML content (replace this with your actual HTML content)
+//         messagePopupDiv.innerHTML = '<p>Your HTML content goes here</p>';
+//         // Append the messagePopupDiv to the outerDiv
+//         var outerDiv = document.getElementById('outerDiv');
+
+//         outerDiv.appendChild(messagePopupDiv);
+//         // Get a reference to the first child of the body
+//         var firstChild = document.body.firstChild;
+//         // Insert the outerDiv before the first child
+//         document.body.insertBefore(outerDiv, firstChild);
+//     }
+
+//     //!
+//     // Get the parent div element
+//     // var parentDiv = document.getElementById('outerDiv');
+//     // // Check if the parent div exists
+//     // if (parentDiv) {
+//     //     // Get all div elements inside the parent div
+//     //     var childDivs = parentDiv.querySelectorAll('div');
+//     //     // Get the count of div elements inside the parent div
+//     //     var divCount = childDivs.length;
+//     //     console.log("Number of divs inside parent div:", divCount);
+//     // } else {
+//     //     console.error('Parent div not found');
+//     // }
+
+//     //! new 
+//     // Create a div element
+//     // var messagePopupDiv = document.createElement('div');
+//     // Set attributes for the div
+//     // messagePopupDiv.id = 'messagePopup';
+//     // messagePopupDiv.className = 'message-popup';
+//     // Get a reference to the first child of the body
+//     // var firstChild = document.body.firstChild;
+//     // Insert the div before the first child
+//     // document.body.insertBefore(messagePopupDiv, firstChild);
+//     var outerDiv = document.getElementById('outerDiv');
+
+//     console.log("showPopupMessage show ");
+//     var popup = document.getElementById('messagePopup');
+//     // Set the appropriate class based on status
+//     var className = (status === 1) ? 'success' : 'danger';
+//     // Set the message and class
+//     popup.innerHTML = message;
+//     popup.className = 'message-popup ' + className;
+//     // Show the popup
+//     // popup.style.display = 'block';
+//     outerDiv.style.display = 'block';
+//     // Hide the popup after 4 seconds
+//     setTimeout(function () {
+//         // popup.style.display = 'none';
+//     }, 800000);
+// }
 
 //! navbar -> sidebar code
 function w3_close() {
@@ -71,6 +230,19 @@ function checkname(text) {
         //    $("#name-error").text(""); // Clear any previous length error message
     }
     return status;
+}
+function checkotp(otp) {
+    var result = {};
+    if (otp.length < 1) {
+        result.status = 0;
+        result.msg = "Please enter Code.";
+    } else if (otp.length !== 6) {
+        result.status = 0;
+        result.msg = "Code must be 6 character.";
+    } else {
+        result.status = 1;
+    }
+    return result;
 }
 
 function checkpassword(password) {

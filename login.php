@@ -157,7 +157,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
         display: inline-block;
         /* margin: 0px; */
         /* background-image: url(images/p1.jpg); */
-        background: url(images/p1.jpg) no-repeat center center;
+        background: url(images/p5.jpg) no-repeat center center;
         background-size: cover;
         box-sizing: border-box;
     }
@@ -216,6 +216,33 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
             font-size: 15px;
         }
     }
+    #password {
+        position: relative;
+    }
+    .toggle-password {
+        position: absolute;
+        top: 0px;
+        /* left: 38%; */
+        right: 0px;
+        /* display: inline-block; */
+        /* transform: translateY(-50%); */
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        padding: 4px;
+    }
+    .toggle-password:focus {
+        outline: none;
+    }
+    #pass-hide{
+      display: none;
+    }
+    #pass-hide,#pass-show{
+      width: 21px;
+    }
+    .pass-div{
+        position: relative;
+    }
     </style>
 </head>
 
@@ -229,7 +256,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
                     <h2>Login</h2>
                 </div>
                 <div class="login-form">
-                    <form id="loginForm" action="your-server-endpoint" method="post">
+                    <form id="loginForm" action="" method="post">
                         <div class="form-group">
                             <label for="userid">User ID</label>
                             <input type="text" id="userid" name="userid" required>
@@ -237,14 +264,21 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" id="password" name="password" required>
+                            <div class="pass-div">
+                                <input type="password" id="password" name="password" required>
+                                <button type="button" class="toggle-password" id="togglePassword">
+                                    <img src="images/logo/hide.png" alt="icon" id="pass-hide" srcset="">
+                                    <img src="images/logo/show.png" alt="icon" id="pass-show" srcset="">
+                                </button>
+                            </div>
+
                             <div class="validation-indicator" id="passValidation"></div>
                         </div>
                         <button type="button" class="login-button" id="login-button">Login</button>
                     </form>
                     <div class="additional-links">
                         <p>Don't have an account? <a href="signup.php">Sign up</a></p>
-                        <p><a href="#">Forgot Password?</a></p>
+                        <p><a href="forgotpassword.php">Forgot Password?</a></p>
                     </div>
                 </div>
             </div>
@@ -335,6 +369,25 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
     //     }
     //     Implement your server-side validation and authentication logic here
     // }
+    //! toggel password visibility start
+        const togglePasswordButton = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        togglePasswordButton.addEventListener('click', function() {
+            // Toggle the password field type
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                document.getElementById('pass-hide').style.display = 'block';
+                document.getElementById('pass-show').style.display = 'none';
+                // togglePasswordButton.textContent = 'Hide Password';
+            } else {
+                passwordInput.type = 'password';
+                document.getElementById('pass-hide').style.display = 'none';
+                document.getElementById('pass-show').style.display = 'block';
+                // togglePasswordButton.textContent = 'Show Password';
+            }
+        });
+    //! toggel password visibility end
+
     });
     </script>
 

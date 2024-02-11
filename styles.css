@@ -122,7 +122,65 @@ body {
 .sidebar-menu a:hover {
     background: #444;
 }
+/* .message-popup { */
+    /* position: fixed; */
+    /* top: 10px; */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    /* padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px; */
+    /* display: none; */
+    /* z-index: 9999; */
+    /* margin-bottom: 10px;
+} */
+
+/* Define the animation */
+@keyframes slideIn {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+.message-popup-container {
+    position: relative;
+    /* Set max-width or other styles if needed */
+}
+  
 .message-popup {
+    /* Initially, set the position to top of the container */
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    right: 0; */
+    /* Add animation properties */
+    animation: slideIn 0.5s ease-in-out forwards;
+    /* Hide the element by default */
+    opacity: 0;
+}
+
+/* .message-popup { */
+    /* Initially, set the position to top of the container */
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    right: 0; */
+    /* Add animation properties */
+    /* animation: slideIn 0.5s ease-in-out forwards; */
+    /* Hide the element by default */
+    /* opacity: 0;
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 10px;
+} */
+
+#outerDiv{
     position: fixed;
     top: 10px;
     left: 50%;
@@ -132,7 +190,7 @@ body {
     color: #fff;
     font-size: 16px;
     display: none;
-    z-index: 9999;
+    z-index: 9988899;
 }
 .success {
     background-color: #28a745;
