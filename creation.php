@@ -2,7 +2,7 @@
 require_once 'config/init.php';
 include 'navbar.php';
 
-$where = array(); // Customize the WHERE clause as needed
+$where = array("completed" => 1); // Customize the WHERE clause as needed
 $sort = "id DESC"; // Customize the sorting as needed
 $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
 // print_r($allimages);

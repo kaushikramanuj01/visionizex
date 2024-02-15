@@ -387,6 +387,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
         function errorCallback(error) {
             console.log("fail");
             console.error('Error:', error);
+            showPopupMessage("Server Error", 0);
         }
     });
 
@@ -437,7 +438,6 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
             if(error == 1){ return; }
 
         // ! Data validation end
-
             
         const url = "api/login";
         const method = "POST";
@@ -460,18 +460,19 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
 
             console.log("success");
 
-            showPopupMessage(jsondata.message, jsondata.status);
-
             if (jsondata.success == 1) {
                 var parameter1 = '1'; // for login indicate
                 var redirectUrl = 'login.php';
                 window.location.href = redirectUrl;
+            }else{
+                showPopupMessage(jsondata.message, jsondata.status);
             }
         }
 
         function errorCallback(error) {
             console.log("fail");
             console.error('Error:', error);
+            showPopupMessage("Server Error", 0);
         }
     });
 

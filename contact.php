@@ -1,6 +1,9 @@
 <?php
 require_once 'config/init.php';
 include 'navbar.php';
+
+$login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -224,9 +227,105 @@ include 'navbar.php';
         margin-bottom: 20px;
         font-family: 'Poppins', sans-serif;
     }
+
+    /* Modal styles */
+.modal {
+  display: none; /* Hide the modal by default */
+  position: fixed; /* Position the modal relative to the viewport */
+  /* z-index: 1; Set the z-index to ensure it appears above other content */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  opacity: 0; /* Start with 0 opacity */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+}
+
+.modal-content {
+  /* background-color: #fefefe; White background for the modal content */
+  /* margin: 15% auto; Center the modal vertically and horizontally */
+  padding: 15px;
+  border-radius: 5px;
+  /* width: 45%; Set the width of the modal */
+  /* background-image: linear-gradient(to right, #3a514c, #473939); */
+  color: white;
+  font-family: 'Arimo';
+  background-image: linear-gradient(148deg, rgba(85, 139, 254, 0.12) 1.65%, rgba(87, 139, 254, 0) 72%, #0B0F18);
+  background-color: #1c263b;
+  width: 23rem;
+  margin: 30px;
+}
+
+#loginButton-b {
+  background: linear-gradient(to right, #5a605f, #484747);
+  border: 1px solid white;
+  border-radius: 3px;
+  width: 130px;
+  margin-top: 10px;
+  text-decoration: none;
+  color: white;
+  width: 78px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Close button style */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal {
+  display: flex; /* Show the modal */
+  justify-content: center;
+  align-items: center;
+  /* opacity: 1; Fade in the modal */
+  z-index: -11;
+}
+
+.show {
+  opacity: 1; /* Fade in the modal */
+  z-index: 1;
+}
+
+.p-2{
+  margin-top: 50px;
+  display: inline-block;
+}
+/* .modal-content {
+  background-color: #fefefe; /* White background for the modal content 
+  padding: 20px;
+  border-radius: 5px;
+  width: 50%; /* Set the width of the modal 
+} */
+
+
+
   </style>
 </head>
 <body>
+   <!-- Modal -->
+   <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>To fill this form you have to login first.</p>
+      <p class="p-2">To login Click here.</p>
+      <a href="login.php" id="loginButton-b">Login</a>
+      <!-- <button id="loginButton">Login</button> -->
+    </div>
+  </div>
+  <!-- Modal end -->
+
   <section id="contact">
     <div class="contact-box">
       <div class="contact-links">
@@ -276,9 +375,15 @@ include 'navbar.php';
   <script>
 
     document.addEventListener('DOMContentLoaded', function() {
+      var login = <?php echo $login; ?>;
 
       $("#contact-btn").on("click", function() {
         console.log("clicked btn");
+         if(login !== 1){
+          // Show the login modal
+          $("#loginModal").addClass("show");
+          return;
+        }
 
         var name = document.getElementById("name").value;
         var email = document.getElementById("email").value;
@@ -334,11 +439,28 @@ include 'navbar.php';
         }
 
         function successCallback(data) {
+          var jsonString = JSON.stringify(data);
+          var jsondata = JSON.parse(jsonString);
           console.log("success");
-          showPopupMessage(data.message, 1);
-          document.getElementById("contactForm").reset();
+          
+          showPopupMessage(jsondata.message, jsondata.status);
+          if(jsondata.status == 1){
+            document.getElementById("contactForm").reset();
+          }
+
         }
 
+      });
+
+      $(".close").on("click", function() {
+        $("#loginModal").removeClass("show");
+      });
+
+      // Handle the login button click event
+      $("#loginButton").on("click", function() {
+        // Redirect the user to the login page or perform any other action
+        // For example:
+        // window.location.href = "login.php";
       });
 
     });

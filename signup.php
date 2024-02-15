@@ -412,6 +412,7 @@
         function errorCallback(error) {
             console.log("fail");
             console.error('Error:', error);
+            showPopupMessage("Server Error", 0);
         }
     });
 
@@ -437,36 +438,23 @@
             var jsondata = JSON.parse(jsonString);
 
             console.log("success");
-            showPopupMessage(jsondata.message, jsondata.status);
 
             if (jsondata.success == 1) {
-                document.getElementById('signupForm').style.display = 'block';
-                document.getElementById('otpForm').style.display = 'none';
-
+                // document.getElementById('signupForm').style.display = 'block';
+                // document.getElementById('otpForm').style.display = 'none';
                 var parameter1 = '1';
                 // var parameter2 = 'value2';
                 var redirectUrl = 'index.php?l=' + encodeURIComponent(parameter1);
                 window.location.href = redirectUrl;
+            }else{
+                showPopupMessage(jsondata.message, jsondata.status);
             }
-
-            // if (data.generatedText) {
-            //     console.log(data.generatedText);
-            //     $("#generatedText").text(data.generatedText);
-            //     $("#generatedText").show();
-            // } else {
-            //     console.error('API response does not contain generatedText field.');
-            // }
-            // if (data.imgurl) {
-            //     $("#imageResult").attr("src", data.imgurl);
-            //     $("#generatedImage").show();
-            // } else {
-            //     console.error('API response does not contain imageUrl field.');
-            // }
         }
 
         function errorCallback(error) {
             console.log("fail");
             console.error('Error:', error);
+            showPopupMessage("Server Error", 0);
         }
 
         // const inputText = $("#inputText").val();

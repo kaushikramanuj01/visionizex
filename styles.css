@@ -160,9 +160,29 @@ body {
     /* Add animation properties */
     animation: slideIn 0.5s ease-in-out forwards;
     /* Hide the element by default */
-    opacity: 0;
+    /* opacity: 0; */
+
+    padding: 6px;
+    font-size: 18px;
+    font-family: sans-serif;
+    border-radius: 5px;
+    margin-bottom: 4px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 0px;
+    justify-content: space-between;
+
 }
 
+.cancel-button{
+    font-size: 16px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    color: #383838;
+}
 /* .message-popup { */
     /* Initially, set the position to top of the container */
     /* position: absolute;
@@ -191,6 +211,8 @@ body {
     font-size: 16px;
     display: none;
     z-index: 9988899;
+    transition: height 0.3s ease;
+
 }
 .success {
     background-color: #28a745;

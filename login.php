@@ -336,19 +336,25 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
 
             console.log("success");
 
-            showPopupMessage(jsondata.message, jsondata.status);
+            // showPopupMessage(jsondata.message, jsondata.status);
 
             if (jsondata.success == 1) {
+                document.getElementById('passValidation').style.display = 'none';
                 var parameter1 = '1'; // for login indicate
                 var redirectUrl = 'index.php?l=' + encodeURIComponent(parameter1);
                              
                 window.location.href = redirectUrl;
+            }else{
+                console.log("kkjll");
+                $("#passValidation").text(jsondata.message);
+                document.getElementById('passValidation').style.display = 'block';
             }
         }
 
         function errorCallback(error) {
             console.log("fail");
             console.error('Error:', error);
+            showPopupMessage("Server Error", 0);
         }
     });
 

@@ -9,7 +9,7 @@
 
         <a href="index.php" id="imageButton" class="nav_hide2">Generate</a>
         <a href="creation.php" id="chatButton" class="nav_hide2">Explore ideas</a>
-        <a href="blog.php" id="chatButton" class="nav_hide">Blog</a>
+        <!-- <a href="blog.php" id="chatButton" class="nav_hide">Blog</a> -->
         <a href="contact.php" id="chatButton" class="nav_hide">Contact</a>
         <a href="profile.php" id="chatButton" class="nav_hide">Profile</a>
         <!-- <button id="imageButton">Image</button> -->
@@ -65,7 +65,7 @@
         <a href="premium.php" class="premium_btn_div w3-bar-item w3-button" id="premium_btn">Premium</a>
     <!-- </div> -->
   <!-- </div> -->
-  <a href="blog.php" class="w3-bar-item w3-button">Blog</a>
+  <!-- <a href="blog.php" class="w3-bar-item w3-button">Blog</a> -->
   <a href="contact.php" class="w3-bar-item w3-button">Contact</a>
   <a href="profile.php" class="w3-bar-item w3-button">Profile</a>
 

@@ -139,63 +139,62 @@ include 'navbar.php';
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    // JavaScript code using jQuery
-    $(document).ready(function() {
-        $("#generateButton").on("click", function() {
-            const inputText = $("#inputText").val();
-            $("#loader").show();
-            generateText(inputText);
-        });
-
-        function generateText(input) {
-            const url = "api/generate";
-            const method = "POST";
-            const headerdata = {
-                "Content-Type": "application/json"
-            };
-            const paramsdata = JSON.stringify({
-                text: input
+        // JavaScript code using jQuery
+        $(document).ready(function() {
+            $("#generateButton").on("click", function() {
+                const inputText = $("#inputText").val();
+                $("#loader").show();
+                generateText(inputText);
             });
 
-            currentXhr = $.ajax({
-                type: method,
-                url: url + '.php',
-                headers: headerdata,
-                data: paramsdata,
-                dataType: "json", // Ensure JSON response is expected
-                error: errorCallback,
-                success: successCallback,
-                complete: function() {
-                    // Hide the loader after the API call is complete
-                    $("#loader").hide();
-                }
-            });
-        }
+            function generateText(input) {
+                const url = "api/generate";
+                const method = "POST";
+                const headerdata = {
+                    "Content-Type": "application/json"
+                };
+                const paramsdata = JSON.stringify({
+                    text: input
+                });
 
-        function errorCallback(error) {
-            console.error('Error:', error);
-        }
-
-        function successCallback(data) {
-            if (data.generatedText) {
-                console.log(data.generatedText);
-                $("#generatedText").text(data.generatedText);
-                $("#generatedText").show();
-
-            } else {
-                console.error('API response does not contain generatedText field.');
+                currentXhr = $.ajax({
+                    type: method,
+                    url: url + '.php',
+                    headers: headerdata,
+                    data: paramsdata,
+                    dataType: "json", // Ensure JSON response is expected
+                    error: errorCallback,
+                    success: successCallback,
+                    complete: function() {
+                        // Hide the loader after the API call is complete
+                        $("#loader").hide();
+                    }
+                });
             }
 
-            if (data.imgurl) {
+            function errorCallback(error) {
+                console.error('Error:', error);
+            }
+
+            function successCallback(data) {
+                if (data.generatedText) {
+                    console.log(data.generatedText);
+                    $("#generatedText").text(data.generatedText);
+                    $("#generatedText").show();
+
+                } else {
+                    console.error('API response does not contain generatedText field.');
+                }
+
+                if (data.imgurl) {
                 $("#imageResult").attr("src", data.imgurl);
                 $("#generatedImage").show();
-            } else {
-                console.error('API response does not contain imageUrl field.');
+                } else {
+                    console.error('API response does not contain imageUrl field.');
+                }
             }
-        }
-    });
+        });
     </script>
 
 </body>
-
 </html>

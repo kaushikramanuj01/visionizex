@@ -3,6 +3,7 @@ require_once 'DBconfig.php';
 require_once 'DB.php';
 require_once 'iis.php';
 require_once 'email.php';
+require_once 'emailtemplate.php';
 
 session_start(); // Start the session
 // require_once '../main.js';

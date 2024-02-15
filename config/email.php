@@ -12,12 +12,12 @@ require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 
 class email{
-    function sendemail($receiver,$subject,$body){  // receiver mail, subject, body,
-        //Create an instance; passing `true` enables exceptions
+    function sendemail($receiver,$subject,$body){  // receiver mail, subject, body 
+        //Create an instance; passing `true` enables exceptions   
         $mail = new PHPMailer(true);
 
         try {
-            //Server settings
+            // Server settingss
             // $mail->SMTPDebug  = SMTP::DEBUG_SERVER;             //Enable verbose debug output
             $mail->isSMTP();                                   //Send using SMTP
             $mail->Host       = "mail.visionizex.tech";

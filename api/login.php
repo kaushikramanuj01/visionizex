@@ -14,6 +14,14 @@ $success = 0;
 $action = isset($data['action']) ? $data['action'] : '';
 $response = array();
 
+$login__id = $SubDB->generateUniqueID();
+$inst = array(
+    "_id" => $login__id,
+    "main_json" => $json_data,
+);
+$where = array(); // Use appropriate where conditions
+$SubDB->performCRUD("tblloginapilog", "i", $inst, $where);
+
 if ($action == "signup") {
     // Validate input
     $email = (string) $data['email'];
@@ -60,23 +68,137 @@ if ($action == "signup") {
             $where = array("isactive" => 1); // Customize the WHERE clause as needed
             $email_info = $SubDB->execute("tblemailconfig", $where,"","");
             if(sizeof($email_info) > 0){
-                $body = "Your Verification Code is ::  ".$generated_OTP;
-                $email_result = $sendemail->sendemail($email,"Email Verification",$body); // receiver mail, subject, body,
+
+                // Replace the #otp# tag with the dynamically generated OTP
+                $body = str_replace("#otp#",$generated_OTP, $template[2]);
+                $subject = "Email Verification";
+                                
+                $email__id = $SubDB->generateUniqueID();
+                $inst = array(
+                    "_id" => $email__id,
+                    "receiver_email" => $email,
+                    "subject" => $subject,
+                    "body" => $body,
+                );
+                $where = array(); // Use appropriate where conditions
+                $SubDB->performCRUD("tblemaillog", "i", $inst, $where);
+
+                $email_result = $sendemail->sendemail($email,$subject,$body); // receiver mail, subject, body,
                 // echo $email_result;
+                
                 $response['email_result'] = $email_result;
             }
             //! send email for varification code end
 
-            $message = "OTP is Sended.";
+            $message = "Varification Code is Sent to your email.";
             $status = 1;
             $success = 1;
+        }
+    }
+}
+else if ($action == "compare-code") {
+    // Validate input
+    $temp_email = (string) $data['email'];
+    $entered_otp = $data['entered_otp'];
+
+    if (empty($temp_email) || empty($entered_otp)) {
+        $message = "All fields are required.";
+    } elseif (!filter_var($temp_email, FILTER_VALIDATE_EMAIL)) {
+        $message = "Invalid email format.";
+    } else {
+        // Input is valid, proceed with signup
+        $where = array("email" => $temp_email); // Customize the WHERE clause as needed
+        $userData = $SubDB->execute("tbltempcustmaster", $where,"","");
+
+        // print_r($userData);
+        // Check if the user already exists
+        if (sizeof($userData)==0) {
+            $message = "Data not found. Server Busy.";
+            $status = 0;
+            $success = 0;
+        } else {
+            // Temp User exist, proceed with signup (compare)
+            // get field value from tbltempcustmaster
+            $db_otp = $userData[0]['otp'];
+            // Compare OTPs and return result
+            if ($db_otp === $entered_otp){
+                //! User verified
+
+                $db_otp = $userData[0]['otp'];
+                $name = $userData[0]['name'];
+                $db_email = $userData[0]['email'];
+                $password = $userData[0]['password'];
+                    
+                $response['d_name'] = $name;
+                $response['d_db_email'] = $db_email;
+                $response['d_password'] = $password;
+                $response['d_db_otp'] = $db_otp;
+
+                $inst = array(
+                    "name" => $name,
+                    "email" => $db_email,
+                    "password" => $password, // already Hashed the password
+                    "otp" => $db_otp // save otp for record 
+                );
+                $where = array(); // Use appropriate where conditions
+                $debug_msg = $SubDB->performCRUD("tblcustmaster", "i", $inst, $where);
+
+                $response['debug_msg'] = $debug_msg;
+
+                $credit_id = $SubDB->generateUniqueID();
+                $inst = array(
+                    "_id" => $credit_id,
+                    "userid" => $db_email,
+                    "credit" => 15,
+                    "type" => "credit",
+                );
+                $SubDB->performCRUD("tblcredit", "i", $inst, $where);
+
+                $_SESSION['useremail'] = $db_email;
+                $_SESSION['sername'] = $name;
+                $_SESSION['login'] = 1;
+                $_SESSION['login_msg'] = 1;
+
+                $where = array("email" => $db_email); // Customize the WHERE clause as needed
+                $SubDB->performCRUD("tbltempcustmaster", "d",[], $where);
+
+                //! send email for varification code start
+                $where = array("isactive" => 1); // Customize the WHERE clause as needed
+                $email_info = $SubDB->execute("tblemailconfig", $where,"","");
+                if(sizeof($email_info) > 0){
+                    // Replace the #name# tag with the dynamically name
+                    $body = str_replace("#name#",$name, $template[3]);
+                    $subject = "Thank You for Sign-Up - VisionizeX";
+                    // $body = "Thank You for sign up in VisionizeX";
+                    $email__id = $SubDB->generateUniqueID();
+                    $inst = array(
+                        "_id" => $email__id,
+                        "receiver_email" => $db_email,
+                        "subject" => $subject,
+                        "body" => $body,
+                    );
+                    $where = array(); // Use appropriate where conditions
+                    $SubDB->performCRUD("tblemaillog", "i", $inst, $where);
+                    $email_result = $sendemail->sendemail($db_email,$subject,$body); // receiver mail, subject, body,
+                    // echo $email_result;
+                    $response['email_result'] = $email_result;
+                }
+                //! send email for varification code end
+
+                $message = "Code Verified";
+                $status = 1;
+                $success = 1;
+            }else{
+                //! wrong code entered    
+                $message = "Wrong Code Entered.";
+            }
+
         }
     }
 }
 else if ($action == "forgot_pass") {
     // Validate input
     $email = (string) $data['userid'];
-
     $where = array(); // Use appropriate where conditions
     
     if (empty($email)) {
@@ -109,14 +231,25 @@ else if ($action == "forgot_pass") {
             $where = array("isactive" => 1); // Customize the WHERE clause as needed
             $email_info = $SubDB->execute("tblemailconfig", $where,"","");
             if(sizeof($email_info) > 0){
-                $body = "Your Verification Code To Reset Password is ::  ".$generated_OTP;
-                $email_result = $sendemail->sendemail($email,"Reset Password - VisionizeX",$body); // receiver mail, subject, body,
+                // Replace the #otp# tag with the dynamically generated OTP
+                $body = str_replace("#otp#",$generated_OTP, $template[1]);
+                $subject = "Reset Password - VisionizeX";
+                $email__id = $SubDB->generateUniqueID();
+                $inst = array(
+                    "_id" => $email__id,
+                    "receiver_email" => $email,
+                    "subject" => $subject,
+                    "body" => $body,
+                );
+                $where = array(); // Use appropriate where conditions
+                $SubDB->performCRUD("tblemaillog", "i", $inst, $where);
+                $email_result = $sendemail->sendemail($email,$subject,$body); // receiver mail, subject, body,
                 // echo $email_result;
                 $response['email_result'] = $email_result;
             }
             //! send email for forget password code end
 
-            $message = "Code is Sended.";
+            $message = "Varification Code is Sent to your email.";
             $status = 1;
             $success = 1;
         }
@@ -164,107 +297,30 @@ else if ($action == "forgot_code") {
                 $where = array("isactive" => 1); // Customize the WHERE clause as needed
                 $email_info = $SubDB->execute("tblemailconfig", $where,"","");
                 if(sizeof($email_info) > 0){
-                    $body = "Your Password is Changed for VisionizeX";
-                    $email_result = $sendemail->sendemail($email,"Alert Password is Changed",$body); // receiver mail, subject, body,
+                    $body = $template[0];
+                    $subject = "Alert Password is Changed - VisionizeX";
+                    // $body = "Your Password is Changed for VisionizeX";
+                    $email__id = $SubDB->generateUniqueID();
+                    $inst = array(
+                        "_id" => $email__id,
+                        "receiver_email" => $email,
+                        "subject" => $subject,
+                        "body" => $body,
+                    );
+                    $where = array(); // Use appropriate where conditions
+                    $SubDB->performCRUD("tblemaillog", "i", $inst, $where);
+                    $email_result = $sendemail->sendemail($email,$subject,$body); // receiver mail, subject, body,
                     // echo $email_result;
                     $response['email_result'] = $email_result;
                 }
                 //! send email for Password change Alert end
 
-                $message = "Your Password is Changed.";
+                $message = "Your Password is Changed Successfully.";
                 $status = 1;
                 $success = 1;
             }else{
-                $message = "Code is not Correct.";
+                $message = "Entered Code is not Correct.";
             }
-        }
-    }
-}
-else if ($action == "compare-code") {
-    // Validate input
-    $temp_email = (string) $data['email'];
-    $entered_otp = $data['entered_otp'];
-
-    if (empty($temp_email) || empty($entered_otp)) {
-        $message = "All fields are required.";
-    } elseif (!filter_var($temp_email, FILTER_VALIDATE_EMAIL)) {
-        $message = "Invalid email format.";
-    } else {
-        // Input is valid, proceed with signup
-        $where = array("email" => $temp_email); // Customize the WHERE clause as needed
-        $userData = $SubDB->execute("tbltempcustmaster", $where,"","");
-
-        // print_r($userData);
-        // Check if the user already exists
-        if (sizeof($userData)==0) {
-            $message = "Data not found. Server Busy.";
-            $status = 0;
-            $success = 0;
-        } else {
-            // Temp User exist, proceed with signup (compare)
-            // get field value from tbltempcustmaster
-            $db_otp = $userData[0]['otp'];
-            // Compare OTPs and return result
-            if ($db_otp === $entered_otp){
-                //! User verified
-                $message = "Code Verified";
-
-                $db_otp = $userData[0]['otp'];
-                $name = $userData[0]['name'];
-                $db_email = $userData[0]['email'];
-                $password = $userData[0]['password'];
-                    
-                $response['d_name'] = $name;
-                $response['d_db_email'] = $db_email;
-                $response['d_password'] = $password;
-                $response['d_db_otp'] = $db_otp;
-
-                $inst = array(
-                    "name" => $name,
-                    "email" => $db_email,
-                    "password" => $password, // already Hashed the password
-                    "otp" => $db_otp // save otp for record 
-                );
-                $where = array(); // Use appropriate where conditions
-                $debug_msg = $SubDB->performCRUD("tblcustmaster", "i", $inst, $where);
-
-                $response['debug_msg'] = $debug_msg;
-
-                $credit_id = $SubDB->generateUniqueID();
-                $inst = array(
-                    "_id" => $credit_id,
-                    "userid" => $db_email,
-                    "credit" => 15,
-                    "type" => "credit",
-                );
-                $SubDB->performCRUD("tblcredit", "i", $inst, $where);
-
-                $_SESSION['useremail'] = $db_email;
-                $_SESSION['sername'] = $name;
-                $_SESSION['login'] = 1;
-                $_SESSION['login_msg'] = 1;
-
-                $where = array("email" => $db_email); // Customize the WHERE clause as needed
-                $SubDB->performCRUD("tbltempcustmaster", "d",[], $where);
-
-                //! send email for varification code start
-                $where = array("isactive" => 1); // Customize the WHERE clause as needed
-                $email_info = $SubDB->execute("tblemailconfig", $where,"","");
-                if(sizeof($email_info) > 0){
-                    $body = "Thank You for sign up in VisionizeX";
-                    $email_result = $sendemail->sendemail($db_email,"Thank You for Sign-Up",$body); // receiver mail, subject, body,
-                    // echo $email_result;
-                    $response['email_result'] = $email_result;
-                }
-                //! send email for varification code end
-
-                $status = 1;
-                $success = 1;
-            }else{
-                //! wrong code entered    
-                $message = "Wrong Code Entered.";
-            }
-
         }
     }
 }
@@ -356,14 +412,14 @@ else if ($action == "login") {
             $response['RK_HH'] = $email;
             if (password_verify($user_password, $password)) {
                 // Password is correct
-                $where = array("userid" => $user_userid); // Customize the WHERE clause as needed
-                $imgsel = $SubDB->execute("tblgenerated", $where,"","");
+                // $where = array("userid" => $user_userid); // Customize the WHERE clause as needed
+                // $imgsel = $SubDB->execute("tblgenerated", $where,"","");
 
                 // $IIS->setusername($name);
                 // $IIS->setuseremail($email);
                 // Set a session variable
                 $_SESSION['login'] = 1;
-                $_SESSION['generated_image'] = sizeof($imgsel);
+                // $_SESSION['generated_image'] = sizeof($imgsel);
                 $_SESSION['useremail'] = $email;
                 $_SESSION['sername'] = $name;
                 $_SESSION['login_msg'] = 1;
@@ -372,7 +428,7 @@ else if ($action == "login") {
                 $status = 1;
                 $success = 1;
             } else {
-                $message = 'Password is incorrect.';
+                $message = 'Password or Email is incorrect.';
             }
         } else {
             $message = "User not found.";

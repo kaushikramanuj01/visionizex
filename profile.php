@@ -274,7 +274,47 @@ $usercredit = $SubDB->countcredit();
                 left: 15px;
             }
         }
+        .msg_a{
+            color: white;
+            font-size: 13px;
+            position: relative;
+            text-align: -webkit-center;
+        }
+        .msg_b{
+            border-bottom: 2px solid white;
+            width: fit-content;
+        }
     
+        .profile-sub-o{
+            padding: 3px 0px;
+            /* background-color: antiquewhite; */
+            height: 10%;
+            border-radius: 12px;
+            background-color: #1f283b;
+            margin-top: 15px;
+            width: fit-content;
+            /* margin-bottom: 15px; */
+            float: right;
+            right: 25px;
+            position: relative;
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .profile-sub-o a{
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid;
+        }
+        .psa1{
+            margin-left: 15px;
+            margin-right: 10px;
+        }
+        .psa2{
+            margin-right: 15px;
+        }
     </style>
 </head>
 
@@ -286,14 +326,30 @@ $usercredit = $SubDB->countcredit();
                 <span>Total Point .: <?php echo $usercredit; ?></span>
             </div>
 
+            <!-- <div class="profile-sub-o">
+                <a href="javascript:void(0)" onclick="showprofile()" class="psa1">Profile</a>
+                <a href="javascript:void(0)" onclick="showhistory()" class="psa2">Purchage History</a>
+
+            </div> -->
+
             <!-- <div class="total_div_b">
                 <span>Expire On .: 15-02-2024</span>
             </div> -->
 
             <!-- ############# NEW ################ -->
 
+            <?php   
+                $where = array(
+                    'userid'=>$useremail
+                );
+                $sort = "id DESC"; // Customize the sorting as needed
+                $history = $SubDB->execute("tblhistory", $where,$sort,"");
+            ?>
             <div class="container con2">
                 <h1>Your Purchases</h1>
+                <?php
+                    if(sizeof($history) > 0){
+                ?>
                 <table class="rwd-table">
                     <tbody>
                         <tr>
@@ -310,13 +366,7 @@ $usercredit = $SubDB->countcredit();
                             <th>Net Amount</th> -->
                         </tr>
 
-                        <?php   
-                            $where = array(
-                                'userid'=>$useremail
-                            );
-                            $sort = "id DESC"; // Customize the sorting as needed
-                            $history = $SubDB->execute("tblhistory", $where,$sort,"");
-
+                            <?php
                             // $current_date = date('Y-m-d H:i:s');
                             // $current_date = date('Y-m-d');
                             foreach($history as $value){
@@ -354,6 +404,13 @@ $usercredit = $SubDB->countcredit();
 
                     </tbody>
                 </table>
+                <?php }else{ ?>
+
+                <div class="msg_a">
+                    <p class="msg_b">Your Purchages will shown here</p>
+                </div>
+
+                <?php } ?>
                 <!-- <h3>Resize Me</h3> -->
             </div>
 
@@ -368,6 +425,11 @@ $usercredit = $SubDB->countcredit();
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="main.js"></script>
+    <!-- <script>
+        function showprofile(){
+
+        }
+    </script> -->
 </body>
 
 </html>
