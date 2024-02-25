@@ -112,6 +112,11 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
         width: 100%;
         background: linear-gradient(to right, #31514a, #484747);
         margin-top: 30px;
+        /* width: 125px; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
     }
 
     .login-button:hover {
@@ -243,6 +248,23 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
     .pass-div{
         position: relative;
     }
+
+    #loader {
+        /* border: 4px solid #f3f3f3; Light grey */
+        border: 4px solid #937575;
+        /* border-top: 4px solid #3498db; Blue */
+        /* border-top: 4px solid #4d6c81; */
+        border-top: 4px solid #4d6c8100;
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        animation: spin 1s linear infinite;
+        display: none; /* Initially hide loader */
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
     </style>
 </head>
 
@@ -274,7 +296,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
 
                             <div class="validation-indicator" id="passValidation"></div>
                         </div>
-                        <button type="button" class="login-button" id="login-button">Login</button>
+                        <button type="button" class="login-button" id="login-button">Login <div id="loader"></div> </button>
                     </form>
                     <div class="additional-links">
                         <p>Don't have an account? <a href="signup.php">Sign up</a></p>
@@ -317,6 +339,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
         }
         if(error == 1){ return; }
 
+        $("#loader").show();
         const url = "api/login";
         const method = "POST";
         const headerdata = {
@@ -337,7 +360,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
             console.log("success");
 
             // showPopupMessage(jsondata.message, jsondata.status);
-
+            $("#loader").hide();
             if (jsondata.success == 1) {
                 document.getElementById('passValidation').style.display = 'none';
                 var parameter1 = '1'; // for login indicate
@@ -354,6 +377,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
         function errorCallback(error) {
             console.log("fail");
             console.error('Error:', error);
+            $("#loader").hide();
             showPopupMessage("Server Error", 0);
         }
     });

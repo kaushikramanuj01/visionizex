@@ -181,14 +181,20 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
       color: #fff;
       font-family: "Poppins",sans-serif;
       font-size: clamp(16px, 1.6vw, 18px);
-      display: block;
-      padding: 12px 20px;
+      /* display: block; */
+      /* padding: 12px 20px; */
+      padding: 4px 20px;
       margin: 2px auto;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       user-select: none;
       transition: 0.2s;
+      width: 125px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
     }
 
     .submit-btn:hover {
@@ -310,6 +316,23 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
 } */
 
 
+#loader {
+  /* border: 4px solid #f3f3f3; Light grey */
+  border: 4px solid #937575;
+  /* border-top: 4px solid #3498db; Blue */
+  /* border-top: 4px solid #4d6c81; */
+  border-top: 4px solid #4d6c8100;
+  border-radius: 50%;
+  width: 21px;
+  height: 21px;
+  animation: spin 1s linear infinite;
+  display: none; /* Initially hide loader */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
   </style>
 </head>
@@ -365,7 +388,8 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
             <div class="validation-indicator" id="msgValidation"> </div>
             <!-- <textarea class="" name="message" id="msg"></textarea> -->
           </div>
-          <button type="button" class="submit-btn" id="contact-btn">Send</button>
+          <button type="button" class="submit-btn" id="contact-btn">Send <div id="loader"></div> </button>
+          <!-- <button type="button" class="submit-btn" id="contact-btn">Send</button> -->
         </form>
       </div>
     </div>
@@ -377,6 +401,15 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
     document.addEventListener('DOMContentLoaded', function() {
       var login = <?php echo $login; ?>;
 
+      // $("#contact-btn").click(function(){
+      //   // $("#loader").show(); // Show loader when button is clicked
+      //   // Simulate a process completion after 3 seconds (you can replace this with your actual process)
+      //   setTimeout(function(){
+      //     $("#loader").hide(); // Hide loader after process is complete
+      //   }, 3000);
+      // });
+      
+  
       $("#contact-btn").on("click", function() {
         console.log("clicked btn");
          if(login !== 1){
@@ -415,7 +448,10 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
                 $("#msgValidation").text("");
             }
             if(error == 1){ return; }
+
         // ! data validation end
+
+        $("#loader").show();
 
         const url = "api/contact";
         const method = "POST";
@@ -435,6 +471,7 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
           console.log("err");
           // console.error('Error:', error);
           // $(".generation_msg_box").hide();
+          $("#loader").hide();
           showPopupMessage("Server Error", 0);
         }
 
@@ -442,7 +479,7 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
           var jsonString = JSON.stringify(data);
           var jsondata = JSON.parse(jsonString);
           console.log("success");
-          
+          $("#loader").hide();
           showPopupMessage(jsondata.message, jsondata.status);
           if(jsondata.status == 1){
             document.getElementById("contactForm").reset();

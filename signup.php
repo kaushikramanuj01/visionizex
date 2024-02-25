@@ -109,6 +109,10 @@
         font-size: 16px;
         width: 100%;
         background: linear-gradient(to right, #3E514D, #484747);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
     }
     .signup-button:hover {
         background-color: #0056b3;
@@ -228,6 +232,10 @@
         font-size: 16px;
         width: 100%;
         background: linear-gradient(to right, #3E514D, #484747);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
     }
     .otp-button:hover {
         background-color: #0056b3;
@@ -273,6 +281,24 @@
         /* color: white; 
         background-color: #333;
     } */
+
+    .loader {
+        /* border: 4px solid #f3f3f3; Light grey */
+        border: 4px solid #937575;
+        /* border-top: 4px solid #3498db; Blue */
+        /* border-top: 4px solid #4d6c81; */
+        border-top: 4px solid #4d6c8100;
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        animation: spin 1s linear infinite;
+        display: none; /* Initially hide loader */
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
     </style>
 </head>
 
@@ -312,7 +338,7 @@
                             </div>
                             <div class="validation-indicator" id="passValidation"></div>
                         </div>
-                        <button type="button" class="signup-button" id="signup-button">Sign Up</button>
+                        <button type="button" class="signup-button" id="signup-button">Sign Up <div class="loader" id="loader_sign"></div></button>
                     </form>
                     <form id="otpForm">
                         <input type="hidden" name="temp_email" id="temp_email">
@@ -325,7 +351,7 @@
                             <div class="opt-msg">Please Enter Code that send to your email id.</div>
                         </div>
 
-                        <button type="button" class="otp-button" id="otp-button">Submit Code</button>
+                        <button type="button" class="otp-button" id="otp-button">Submit Code <div class="loader" id="loader_otp"></div> </button>
                     </form>
                     <div class="additional-links">
                         <p>Already have an account? <a href="login.php">Login</a></p>
@@ -375,6 +401,7 @@
             }
             if(error == 1){ return; }
         // ! data validation code end
+        $("#loader_sign").show();
         
         // const url = "api/signup";
         const url = "api/login";
@@ -397,6 +424,7 @@
 
             console.log("success"+jsondata.message);
             console.log("success"+jsondata.status);
+            $("#loader_sign").hide();
 
             showPopupMessage(jsondata.message, jsondata.status);
 
@@ -409,15 +437,18 @@
             }
         }
 
-        function errorCallback(error) {
+        function errorCallback(error) {            
             console.log("fail");
             console.error('Error:', error);
+            $("#loader_sign").hide();
             showPopupMessage("Server Error", 0);
         }
     });
 
     // ! OTP compare start
     $("#otp-button").on("click", function() {
+        $("#loader_otp").show();
+
         var entered_otp = $("#otp").val();
         var temp_email = $("#temp_email").val();
 
@@ -436,6 +467,7 @@
         function successCallback(data) {
             var jsonString = JSON.stringify(data);
             var jsondata = JSON.parse(jsonString);
+            $("#loader_otp").hide();
 
             console.log("success");
 
@@ -454,6 +486,7 @@
         function errorCallback(error) {
             console.log("fail");
             console.error('Error:', error);
+            $("#loader_otp").hide();
             showPopupMessage("Server Error", 0);
         }
 

@@ -54,13 +54,14 @@ console.log(user_prompts);
             </div>
             <?php
 
-                $where = array("userid" => $useremail_decode);
+                $where = array("userid" => $useremail_decode,"completed" => 1);
                 $sort = "id DESC"; // Customize the sorting as needed
                 $selimg = $SubDB->execute("tblgenerated", $where,$sort,"");
             
                 $where_blog = array();
                 $selblog = $SubDB->execute("tblblogs", $where_blog,"","");
 
+                $imgpath="";
                 if(sizeof($selimg) == 0){
             if(sizeof($selblog) > 0){
             ?>
@@ -87,12 +88,14 @@ console.log(user_prompts);
                 </div>
             </div>
             <?php
-         } }else{ 
+         } }
+         else{ 
             // $imgpath = $selimg[0]['image_url'];
             $imgpath = "images/".$selimg[0]['local_img'];
             if($selimg[0]['local_img'] == ""){
                 $imgpath = $selimg[0]['image_url'];
             }
+        }
             // echo $imgpath;
             ?>
 
@@ -108,7 +111,7 @@ console.log(user_prompts);
                 </div>
             </div>
 
-            <?php  }  ?>
+            <!-- ?php  }  ?> -->
 
         </div>
 
@@ -153,7 +156,13 @@ console.log(user_prompts);
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+
         user_id = <?php echo $useremail; ?>;
+        selimg = <?php echo json_encode($selimg); ?>;
+        console.log("HHHHHH" + selimg);
+        if(selimg == 0){
+            $("#main_img").hide();
+        }
         var login = <?php echo $login; ?>;
         var userPromptInfo = prompter();
         var len_prompt = userPromptInfo.length;
@@ -258,6 +267,7 @@ console.log(user_prompts);
                     // $("#imageResult").attr("src", 'images/' + data.image_name);
                     // $("#imageResult").attr("src", data.imgurl);
                     $("#generatedImage").show();
+                    $("#main_img").show();
                     $(".slider-container").hide();
 
                     var main_img_html = '<a href="#"><img id="imageResult" src="' + data.imgurl +
@@ -413,7 +423,7 @@ console.log(user_prompts);
     <script>
     <?php
         if($l==1 && isset($_SESSION['login_msg'])){ ?>
-            showPopupMessage("Tou are successfully loged in", 1);
+            showPopupMessage("You are successfully loged in", 1);
     <?php
             unset($_SESSION['login_msg']);
             }

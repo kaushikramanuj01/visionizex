@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $input_f = file_get_contents('php://input');
     $input = json_decode($input_f, true);
-    
 
     $userprompt =$input['text'];
     $user_id =$input['user_id'];
@@ -28,10 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $log_id = $SubDB->generateUniqueID();
     $log = array(
         "_id" => $log_id,
-        "main_input" => $input_f
+        "main_input" => $input_f,
+        "user_id" => $user_id
     );
     $log_where = array();
-    $SubDB->performCRUD("tblapilog", "i", $log, $log_where);
+    $SubDB->performCRUD("tblgenapilog", "i", $log, $log_where);
 
 
     if (isset($input['text']) && !empty($input['text']) && isset($input['user_id'])) {
@@ -50,8 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // if(sizeof($userData)<5){
             if($current_credit>=5){
 
-                $OPENAI_API_KEY = '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'; //OpenAI API key
-                                $url = 'https://api.openai.com/v1/chat/completions';
+                // $OPENAI_API_KEY = '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'; //OpenAI API key
+                $OPENAI_API_KEY = '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'; //OpenAI API key
+                $url = 'https://api.openai.com/v1/chat/completions';
                 // $url = 'https://api.openai.com/v1/embeddings';
                 // "model" => "text-embedding-ada-002",
                 $data = array(
@@ -141,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             
                             if ($imgresult === false) {
                                 $msg = 'image cURL error: ' . curl_error($ch);
-                                $message = "Server Error.";
+                                $message = "Server Error - Generate";
                             } else {
                                 $imgdata = json_decode($imgresult, true);
                                 $response['rrr'] = $imgdata;
@@ -153,13 +154,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     // ! FINAL HERE HERE 
                                     $update = array(
                                         "image_response" => $imgresult,
-                                        "image_url" => $imgurl
+                                        "image_url" => $imgurl,
+                                        "completed" => 1
                                     );
                                     $where = array("_id"=>$_id); // Use appropriate where conditions
                                     $message_2 = $SubDB->performCRUD("tblgenerated", "u", $update, $where);
                                     // ! FINAL HERE HERE
 
-                                    
                                     if($imgurl !==""){
    
                                         $credit_id = $SubDB->generateUniqueID();
@@ -174,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         $response['credit'] = $remaining_credit;
                                         
                                         $logdata = 'Image saved successfully!'; 
-                                        $message = 'Image generated successfully !'; 
+                                        $message = 'Your image has been generated successfully!'; 
 
                                         $response['logdata'] = $logdata;
                                     }else{
@@ -184,31 +185,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     }
                                         
                                     $response['message_2'] = $message_2;
-                                      
                                 }
                                 else {
-                                    $message = "No image url found.";
+                                    $message = "Image not generated - Server Error";
                                 }
                             }
                         }else{
-                            $message = "Prompt content not found";
+                            $message = "Server Error - Generate";
                         }
                     } else {
-                        $message = "No choices found in the Prompt server";
+                        $message = "Server Error. No Choices found.";
                     }
                 }
             }else{
                 $limit=0;
-                $message = "your limit is over.please purchase premium to continue";
+                $message = "Your Free limit is over. Please purchase premium to Continue";
             }
         }else{
-            $message = "User not found.";
+            $message = "User Not Found.";
         }
     } else {
         $message = "Please insert your prompt.";
     }
 } else {
-    $message = "Invalid request";
+    $message = "Invalid Request";
 }
 
 $log = array(
@@ -216,7 +216,7 @@ $log = array(
     "user_id" => $user_id
 );
 $log_where = array("_id"=>$log_id);
-$log_message = $SubDB->performCRUD("tblapilog", "u", $log, $log_where);
+$log_message = $SubDB->performCRUD("tblgenapilog", "u", $log, $log_where);
 
 
 $response['limit']=$limit;
@@ -228,5 +228,4 @@ $response['imghtml']=$imghtml;
 $response['image_name']=$image_name;
 echo json_encode($response);
 // echo json_encode(['msg' => $msg]);
-
 ?>

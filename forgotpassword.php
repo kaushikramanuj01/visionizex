@@ -112,6 +112,10 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
         width: 100%;
         background: linear-gradient(to right, #31514a, #484747);
         margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
     }
 
     .btl-design:hover {
@@ -269,6 +273,25 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
         border-radius: 4px;
         box-sizing: border-box;
     } */
+
+    
+    .loader {
+        /* border: 4px solid #f3f3f3; Light grey */
+        border: 4px solid #937575;
+        /* border-top: 4px solid #3498db; Blue */
+        /* border-top: 4px solid #4d6c81; */
+        border-top: 4px solid #4d6c8100;
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        animation: spin 1s linear infinite;
+        display: none; /* Initially hide loader */
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
     </style>
 </head>
 
@@ -314,7 +337,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
                             <div class="validation-indicator" id="re-passwordValidation"></div>
                         </div>
 
-                        <button type="button" class="forgot-button btl-design" id="forgot-button">Change Password</button>
+                        <button type="button" class="forgot-button btl-design" id="forgot-button">Change Password <div class="loader" id="loader_forg"></div> </button>
                     </form>
 
                     <form id="emailForm" action="" method="post">
@@ -326,7 +349,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
                             <div class="opt-msg">We will send a verification code to your email.</div>
                         </div>
                         
-                        <button type="button" class="email-button btl-design" id="email-button">Send Code</button>
+                        <button type="button" class="email-button btl-design" id="email-button">Send Code <div class="loader" id="loader_code"></div> </button>
                     </form>
 
                     <div class="additional-links">
@@ -357,6 +380,8 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
         }
         if(error == 1){ return; }
 
+        $("#loader_code").show();
+
         const url = "api/login";
         const method = "POST";
         const headerdata = {
@@ -373,6 +398,8 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
             var jsonString = JSON.stringify(data);
             var jsondata = JSON.parse(jsonString);
 
+            $("#loader_code").hide();
+
             console.log("success");
 
             showPopupMessage(jsondata.message, jsondata.status);
@@ -387,6 +414,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
         function errorCallback(error) {
             console.log("fail");
             console.error('Error:', error);
+            $("#loader_code").hide();
             showPopupMessage("Server Error", 0);
         }
     });
@@ -438,6 +466,8 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
             if(error == 1){ return; }
 
         // ! Data validation end
+
+        $("#loader_forg").show();
             
         const url = "api/login";
         const method = "POST";
@@ -458,6 +488,8 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
             var jsonString = JSON.stringify(data);
             var jsondata = JSON.parse(jsonString);
 
+            $("#loader_forg").hide();
+
             console.log("success");
 
             if (jsondata.success == 1) {
@@ -472,6 +504,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
         function errorCallback(error) {
             console.log("fail");
             console.error('Error:', error);
+            $("#loader_forg").hide();
             showPopupMessage("Server Error", 0);
         }
     });

@@ -53,12 +53,15 @@ if ($action == "signup") {
         } else {
             // User doesn't exist, proceed with signup
             // $credit_id = $SubDB->generateUniqueID();
+            $expiry_time = date('Y-m-d H:i:s', strtotime('+5 minutes')); // Calculate expiry time
+
             $generated_OTP = $SubDB->generateOTP();
             $userData = array(
                 "otp" => $generated_OTP,
                 "name" => $name,
                 "email" => $email,
-                "password" => password_hash($password, PASSWORD_DEFAULT) // Hash the password
+                "password" => password_hash($password, PASSWORD_DEFAULT), // Hash the password
+                "expiry_time" => $expiry_time
             );
             $where = array(); // Use appropriate where conditions
 
@@ -107,8 +110,9 @@ else if ($action == "compare-code") {
         $message = "Invalid email format.";
     } else {
         // Input is valid, proceed with signup
+        $sort = "id DESC"; // Customize the sorting as needed
         $where = array("email" => $temp_email); // Customize the WHERE clause as needed
-        $userData = $SubDB->execute("tbltempcustmaster", $where,"","");
+        $userData = $SubDB->execute("tbltempcustmaster", $where,$sort,"1");
 
         // print_r($userData);
         // Check if the user already exists
@@ -120,8 +124,15 @@ else if ($action == "compare-code") {
             // Temp User exist, proceed with signup (compare)
             // get field value from tbltempcustmaster
             $db_otp = $userData[0]['otp'];
+            $expiry_time = $userData[0]['expiry_time'];
+            $current_time = time(); // Current UNIX timestamp
+            $expiry_time = strtotime($expiry_time); // Convert expiry time to UNIX timestamp
+
+
             // Compare OTPs and return result
             if ($db_otp === $entered_otp){
+                if ($current_time <= $expiry_time) {
+
                 //! User verified
 
                 $db_otp = $userData[0]['otp'];
@@ -189,6 +200,9 @@ else if ($action == "compare-code") {
                 $status = 1;
                 $success = 1;
             }else{
+                $message = "Code is Expired.";
+            }
+            }else{
                 //! wrong code entered    
                 $message = "Wrong Code Entered.";
             }
@@ -218,12 +232,15 @@ else if ($action == "forgot_pass") {
             $success = 0;
         } else {
             // User exist, proceed with forgot password
+            $expiry_time = date('Y-m-d H:i:s', strtotime('+5 minutes')); // Calculate expiry time
+
             $forgot_id = $SubDB->generateUniqueID();
             $generated_OTP = $SubDB->generateOTP();
             $userData = array(
                 "_id" => $forgot_id,
                 "otp" => $generated_OTP,
                 "email" => $email,
+                "expiry_time" => $expiry_time,
             );
             $SubDB->performCRUD("tblforgotpass", "i", $userData, $where);
 
@@ -270,9 +287,16 @@ else if ($action == "forgot_code") {
         $message = "Invalid email format.";
     } else {
         // Input is valid, proceed with signup
-        $where = array("email" => $email); // Customize the WHERE clause as needed
-        $userData = $SubDB->execute("tblforgotpass", $where,"","");
 
+        $sort = "id DESC"; // Customize the sorting as needed
+
+        $where = array("email" => $email); // Customize the WHERE clause as needed
+        $userData = $SubDB->execute("tblforgotpass", $where,$sort,"1");
+
+        // $allimages = $SubDB->execute("tblgenerated", $where,$sort,$perpage,$skip);
+        // $allimages = $SubDB->execute("tblgenerated", $where,$sort,$perpage,$skip);
+
+        $response["kaushik_k"] = $userData;
         // Check if the user already exists
         if (sizeof($userData) == 0) {
             $message = "User does not exists.";
@@ -280,8 +304,20 @@ else if ($action == "forgot_code") {
             $success = 0;
         } else {
             $db_code = (int)$userData[0]['otp'];
+            $expiry_time = $userData[0]['expiry_time'];
+
+            $current_time = time(); // Current UNIX timestamp
+            $expiry_time = strtotime($expiry_time); // Convert expiry time to UNIX timestamp
+
+            // if ($current_time > $expiry_time) {
+            //     echo "Current time is greater than expiry time.";
+            // } else {
+            //     echo "Current time is not greater than expiry time.";
+            // }
 
             if($db_code === $forgot_code){
+                if ($current_time <= $expiry_time) {
+
                 $forgot_id = $SubDB->generateUniqueID();
                 $generated_OTP = $SubDB->generateOTP();
                 $userData = array(
@@ -318,6 +354,9 @@ else if ($action == "forgot_code") {
                 $message = "Your Password is Changed Successfully.";
                 $status = 1;
                 $success = 1;
+                }else{
+                    $message = "Code is Expired.";
+                }
             }else{
                 $message = "Entered Code is not Correct.";
             }
