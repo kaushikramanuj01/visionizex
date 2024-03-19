@@ -1,6 +1,6 @@
 <?php
-// Define the command to run your PHP script
-$command = 'php /test_cron2.php'; // Update with your actual PHP script path
+// Define the command to run your PHP script with the relative path
+$command = 'php test_cron2.php'; // Assuming both scripts are in the same folder
 
 // Define the timing for the cron job (e.g., every minute)
 $timing = '* * * * *';
