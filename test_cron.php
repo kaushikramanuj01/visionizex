@@ -1,6 +1,9 @@
 <?php
 // Define the command to run your PHP script with the relative path
-$command = 'php test_cron2.php'; // Assuming both scripts are in the same folder
+$command = 'php /usr/local/bin/php /home/visioniz/public_html/test_cron2.php'; // Assuming both scripts are in the same folder
+
+// /usr/local/bin/php -f /path/to/your/php/script.php
+// /usr/local/bin/php /home/visioniz/public_html/path/to/cron/script
 
 // Define the timing for the cron job (e.g., every minute)
 $timing = '* * * * *';
