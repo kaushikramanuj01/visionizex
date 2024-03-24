@@ -299,8 +299,8 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
                         <button type="button" class="login-button" id="login-button">Login <div id="loader"></div> </button>
                     </form>
                     <div class="additional-links">
-                        <p>Don't have an account? <a href="signup.php">Sign up</a></p>
-                        <p><a href="forgotpassword.php">Forgot Password?</a></p>
+                        <p>Don't have an account? <a href="signup.php">Sign up here.</a></p>
+                        <p>Forgot your password? <a href="forgotpassword.php">Click here to reset.</a></p>
                     </div>
                 </div>
             </div>
@@ -325,7 +325,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
         if (isValidEmail(userid)) {
             document.getElementById('emailValidation').style.display = 'none';
         } else {
-            $("#emailValidation").text("Plese enter valid Email.");
+            $("#emailValidation").text("Please enter a valid email.");
             var error = 1;
             document.getElementById('emailValidation').style.display = 'block';
         }

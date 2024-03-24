@@ -82,7 +82,7 @@ if ($displayCurrency !== 'INR')
 $data = [
     "key"               => $keyId,
     "amount"            => $amount,
-    "name"              => "PicsPic ",
+    "name"              => "VisionizeX ",
     "description"       => "images for Everyone",
     "image"             => "https://s29.postimg.org/r6dj1g85z/daft_punk.jpg",
     "prefill"           => [

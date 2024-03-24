@@ -38,19 +38,31 @@ if ($action == "signup") {
         $where = array("email" => $email); // Customize the WHERE clause as needed
         $userData = $SubDB->execute("tblcustmaster", $where,"","");
 
-        $where = array("email" => $email); // Customize the WHERE clause as needed
-        $tempuserData = $SubDB->execute("tbltempcustmaster", $where,"","");
-
+        // $sort = "id DESC"; // Customize the sorting as needed
+            // $where = array("email" => $email); // Customize the WHERE clause as needed
+            // $tempuserData = $SubDB->execute("tbltempcustmaster", $where,$sort,"");
+            // $response['HHHHH'] = $tempuserData;
+            // $otp_check = 0;
+            // if(sizeof($tempuserData) > 0){
+            //     $db_otp = $tempuserData[0]['otp'];
+            //     $expiry_time = $tempuserData[0]['expiry_time'];
+            //     $current_time = time(); // Current UNIX timestamp
+            //     $expiry_time = strtotime($expiry_time); // Convert expiry time to UNIX timestamp
+            //     if ($current_time <= $expiry_time) {
+            //         $otp_check = 1;
+            //     }
+            // }
+            // else if ($otp_check == 1) {
+            //     $message = "User with this email already exists.";
+            //     $status = 0;
+            //     $success = 0;
+            // }
         // Check if the user already exists
         if (sizeof($userData)>0) {
             $message = "User with this email already exists.";
             $status = 0;
             $success = 0;
-        }else if (sizeof($tempuserData)>0) {
-            $message = "User with this email already exists.";
-            $status = 0;
-            $success = 0;
-        } else {
+        }else{
             // User doesn't exist, proceed with signup
             // $credit_id = $SubDB->generateUniqueID();
             $expiry_time = date('Y-m-d H:i:s', strtotime('+5 minutes')); // Calculate expiry time
@@ -93,7 +105,7 @@ if ($action == "signup") {
             }
             //! send email for varification code end
 
-            $message = "Varification Code is Sent to your email.";
+            $message = "Verification code has been sent to your email.";
             $status = 1;
             $success = 1;
         }
@@ -204,7 +216,7 @@ else if ($action == "compare-code") {
             }
             }else{
                 //! wrong code entered    
-                $message = "Wrong Code Entered.";
+                $message = "Wrong code entered.";
             }
 
         }
@@ -227,7 +239,7 @@ else if ($action == "forgot_pass") {
 
         // Check if the user already exists
         if (sizeof($userData) == 0) {
-            $message = "User does not exists.";
+            $message = "User does not exist.";
             $status = 0;
             $success = 0;
         } else {
@@ -266,7 +278,7 @@ else if ($action == "forgot_pass") {
             }
             //! send email for forget password code end
 
-            $message = "Varification Code is Sent to your email.";
+            $message = "Verification code has been sent to your email.";
             $status = 1;
             $success = 1;
         }
@@ -299,7 +311,7 @@ else if ($action == "forgot_code") {
         $response["kaushik_k"] = $userData;
         // Check if the user already exists
         if (sizeof($userData) == 0) {
-            $message = "User does not exists.";
+            $message = "User does not exist.";
             $status = 0;
             $success = 0;
         } else {

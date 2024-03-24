@@ -448,7 +448,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
             // var checkpassresult = checkpassword(re_password);
             if(re_password !== new_password){
                 var error = 1;
-                $("#re-passwordValidation").text("Both Password Must be Same.");
+                $("#re-passwordValidation").text("Both passwords must be the same.");
                 document.getElementById('re-passwordValidation').style.display = 'block';
             }else{
                 document.getElementById('re-passwordValidation').style.display = 'none';

@@ -89,17 +89,17 @@ if ($success === true)
     $message = $SubDB->performCRUD("tblhistory", "i", $inst_h, $where);
     // ! end add in history table
 
-    $credit_id = $SubDB->generateUniqueID();
-    $inst_credit = array(
-        "_id" => $credit_id,
-        "userid" => $email,
-        "credit" => $credit,
-        "type" => "credit",
-    );
+    // $credit_id = $SubDB->generateUniqueID();
+    // $inst_credit = array(
+    //     "_id" => $credit_id,
+    //     "userid" => $email,
+    //     "credit" => $credit,
+    //     "type" => "credit",
+    // );
 
-    $rk = $SubDB->performCRUD("tblcredit", "i", $inst_credit, $where);
+    // $rk = $SubDB->performCRUD("tblcredit", "i", $inst_credit, $where);
 
-    //! insert credit end
+    // //! insert credit end
 
     // if(mysqli_query($conn, $sql)){
     //     echo "payment details inserted to db";
@@ -159,8 +159,8 @@ if ($success === true)
 }
 else
 {
-    $html = "<p>Your payment failed</p>
-             <p>{$error}</p>";
+    $html = "<p>Your payment failed</p>";
+            //  <p>{$error}</p>";
 }
 
 echo $html;

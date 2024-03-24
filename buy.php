@@ -43,7 +43,7 @@ if($useremail !== ""){
 
     if(sizeof($userData) > 0){
         $customername = $userData[0]['name'];
-        $contactno = "9925884594";
+        $contactno = "9876549876";
 
         $orderData = [
             'receipt'         => "3456",
@@ -68,7 +68,7 @@ if($useremail !== ""){
         $data = [
             "key"               => $keyId,
             "amount"            => $amount,
-            "name"              => "PicsPic ",
+            "name"              => "VisionizeX",
             "description"       => "AI for Everyone",
             "image"             => "https://s29.postimg.org/r6dj1g85z/daft_punk.jpg",
             "prefill"           => [
@@ -176,6 +176,9 @@ if($useremail !== ""){
             border: 1px solid black;
             cursor: pointer;
         }
+        .dumy_note{
+            font-size: 11px;
+        }
     </style>
 </head>
 <body>
@@ -192,13 +195,13 @@ if($useremail !== ""){
             <div class="rj-b">
                 <div>
                     <span>
-                        Subscribe to PicsPic Plus Subscription
+                        Subscribe to VisionizeX Plus Subscription
                     </span>
                 </div>
             </div>
 
             <div class="rj-c">
-                <div class="rv-a">PicsPic Plus Subscription</div>
+                <div class="rv-a">VisionizeX Plus Subscription</div>
                 <div class="rv-b"><?php echo $price; ?></div>
             </div>
 
@@ -209,7 +212,7 @@ if($useremail !== ""){
 
             <div class="rj-e">
                 <span>Tax</span>
-                <span class="rv-d">Enter address to calculate</span>
+                <span class="rv-d">Covered in package price</span>
             </div>
 
             <div class="rj-f">
@@ -233,6 +236,8 @@ if($useremail !== ""){
                 <!-- Any extra fields to be submitted with the form but not sent to Razorpay -->
                 <input type="hidden" name="shopping_order_id" value="3456">
             </form>
+
+            <p class="dumy_note">This is a portfolio website. This is a simulated payment, and no money will be deducted from your bank account. You will not receive any extra points from this payment. Please do not enter your real banking information.</p>
 
         </div>
     </div>

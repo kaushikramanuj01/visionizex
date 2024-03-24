@@ -417,10 +417,10 @@ function checkotp(otp) {
     var result = {};
     if (otp.length < 1) {
         result.status = 0;
-        result.msg = "Please enter Code.";
+        result.msg = "Please enter code.";
     } else if (otp.length !== 6) {
         result.status = 0;
-        result.msg = "Code must be 6 character.";
+        result.msg = "Code must be 6 characters.";
     } else {
         result.status = 1;
     }

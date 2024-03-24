@@ -174,6 +174,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         $remaining_credit = $SubDB->countcredit();
                                         $response['credit'] = $remaining_credit;
                                         
+                                        $where_f = array("userid" => $user_id);
+                                        $userData_f = $SubDB->execute("tblgenerated", $where_f,"","");
+
+                                        $response['i_count'] =  sizeof($userData_f);
+
                                         $logdata = 'Image saved successfully!'; 
                                         $message = 'Your image has been generated successfully!'; 
 

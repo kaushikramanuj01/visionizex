@@ -313,7 +313,8 @@
         <div class="byk">
             <div class="login-container">
                 <div class="login-header">
-                    <h2>Sign Up</h2>
+                    <h2>Create Your Account</h2>
+                    <!-- <h2>Sign Up</h2> -->
                 </div>
                 <div class="login-form">
                     <form id="signupForm" action="" method="post">
@@ -348,13 +349,13 @@
                             <input type="text" id="otp" class="otp-input" name="otp" maxlength="6" required>
                             <div class="validation-indicator" id="otpValidation"></div>
 
-                            <div class="opt-msg">Please Enter Code that send to your email id.</div>
+                            <div class="opt-msg">Please enter the verification code sent to your email.</div>
                         </div>
 
                         <button type="button" class="otp-button" id="otp-button">Submit Code <div class="loader" id="loader_otp"></div> </button>
                     </form>
                     <div class="additional-links">
-                        <p>Already have an account? <a href="login.php">Login</a></p>
+                        <p>Already have an account? <a href="login.php">Log in here.</a></p>
                         <!-- <p><a href="#">Forgot Password?</a></p> -->
                     </div>
                 </div>
@@ -377,13 +378,13 @@
             if (isValidEmail(email)) {
                 document.getElementById('emailValidation').style.display = 'none';
             } else {
-                $("#emailValidation").text("Plese enter valid Email.");
+                $("#emailValidation").text("Please enter a valid email.");
                 var error = 1;
                 document.getElementById('emailValidation').style.display = 'block';
             }
             var checknameresult = checkname(name);
             if(checknameresult == 0){
-                var msg = "Please enter your Name.";
+                var msg = "Please enter your name.";
                 $("#nameValidation").text(msg);
                 var error = 1;
                 document.getElementById('nameValidation').style.display = 'block';

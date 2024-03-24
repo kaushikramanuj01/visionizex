@@ -40,6 +40,7 @@ $usercredit = $SubDB->countcredit();
             padding-bottom: 15px;
             background-color: #0b0f17;
             background-image: linear-gradient(170deg, rgba(87, 139, 254, 0.12) 0.65%, rgba(87, 139, 254, 0) 19%, #0b0f17);
+            border-radius: 5px;
         }
 
         .total_div_a {
@@ -53,7 +54,8 @@ $usercredit = $SubDB->countcredit();
             left: 25px;
             position: relative;
             color: white;
-            font-family: sans-serif;
+            font-family: monospace;
+            /* font-family: sans-serif; */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -85,7 +87,8 @@ $usercredit = $SubDB->countcredit();
         @import 'https://fonts.googleapis.com/css?family=Open+Sans:600,700';
 
         * {
-            font-family: 'Open Sans', sans-serif;
+            font-family: monospace;
+            /* font-family: 'Open Sans', sans-serif; */
         }
 
         .rwd-table {
@@ -298,7 +301,8 @@ $usercredit = $SubDB->countcredit();
             right: 25px;
             position: relative;
             color: white;
-            font-family: sans-serif;
+            font-family: monospace;
+            /* font-family: sans-serif; */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -315,6 +319,47 @@ $usercredit = $SubDB->countcredit();
         .psa2{
             margin-right: 15px;
         }
+        .logged_div{
+            display: contents;
+        }
+        .login_msg_div{
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .logging_msg{
+            color: white;
+            font-size: 28px;
+        }
+        .log_btn{
+            text-decoration: none;
+            color: white;
+            /* height: 45px; */
+            /* display: inline-block; */
+            /* border: 2px solid white; */
+            font-size: 19px;
+            border-radius: 27px;
+            /* width: 9rem; */
+            width: 32%;
+            min-width: 6rem;
+            text-align: center;
+            margin-left: 10px;
+            background-color: ff4f6e;
+            border: 2px solid #ff4f6e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            font-family: monospace;
+            /* font-family: sans-serif; */
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        .log_btn_div{
+            margin-top:14px;
+        }
     </style>
 </head>
 
@@ -322,8 +367,14 @@ $usercredit = $SubDB->countcredit();
 
     <div class="main_div">
         <div class="sub_div">
+
+        <?php
+            if(isset($_SESSION['login']) == 1){
+        ?>
+
+        <div class="logged_div">
             <div class="total_div_a">
-                <span>Total Point .: <?php echo $usercredit; ?></span>
+                <span>Total Point  : <?php echo $usercredit; ?></span>
             </div>
 
             <!-- <div class="profile-sub-o">
@@ -407,19 +458,31 @@ $usercredit = $SubDB->countcredit();
                 <?php }else{ ?>
 
                 <div class="msg_a">
-                    <p class="msg_b">Your Purchages will shown here</p>
+                    <p class="msg_b">Your purchases will be shown here.</p>
                 </div>
 
                 <?php } ?>
                 <!-- <h3>Resize Me</h3> -->
             </div>
 
-        </div>
-    </div>
+            </div>
 
-    <div>
-        <div>
+            <?php
+            }else{
+            ?>
 
+            <div class="login_msg_div">
+                <div class="logging_msg">Please log in to view your profile.</div>
+
+                <div class="log_btn_div">
+                    <a href="login.php" class="log_btn">Login</a>
+                </div>
+
+            </div>
+
+            <?php
+                }
+            ?>
         </div>
     </div>
 

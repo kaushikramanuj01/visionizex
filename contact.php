@@ -95,6 +95,7 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
     }
 
     h2 {
+      /* font-family: monospace; */
       font-family: 'Arimo', sans-serif;
       color: #fff;
       font-size: clamp(30px, 6vw, 60px);
@@ -142,7 +143,8 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
     }
 
     label, input, textarea {
-      font-family: 'Poppins', sans-serif;
+      font-family: monospace;
+      /* font-family: 'Poppins', sans-serif; */
     }
 
     label {
@@ -176,13 +178,13 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
     }
 
     .submit-btn {
-      background-color: #fd917e;
+      /* background-color: #fd917e;
       filter: drop-shadow(2px 2px 3px #0003);
       color: #fff;
       font-family: "Poppins",sans-serif;
       font-size: clamp(16px, 1.6vw, 18px);
       /* display: block; */
-      /* padding: 12px 20px; */
+      /* padding: 12px 20px; *
       padding: 4px 20px;
       margin: 2px auto;
       border: none;
@@ -194,12 +196,34 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 7px;
+      gap: 7px; */
+
+      text-decoration: none;
+      color: white;
+      /* height: 45px; */
+      /* display: inline-block; */
+      /* border: 2px solid white; */
+      font-size: 20px;
+      border-radius: 27px;
+      /* width: 9rem; */
+      width: 50%;
+      min-width: 6rem;
+      text-align: center;
+      /* margin-left: 10px; */
+      background-color: ff4f6e;
+      border: 2px solid #ff4f6e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+      font-family: monospace;
+      /* font-family: sans-serif; */
+      transition: background-color 0.3s ease;
     }
 
-    .submit-btn:hover {
+    /* .submit-btn:hover {
       transform: scale(1.1, 1.1);
-    }
+    } */
 
     .submit-btn:active {
       transform: scale(1.1, 1.1);
@@ -231,7 +255,8 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
         color: #dc3545;
         text-align: left;
         margin-bottom: 20px;
-        font-family: 'Poppins', sans-serif;
+        font-family: monospace;
+        /* font-family: 'Poppins', sans-serif; */
     }
 
     /* Modal styles */
@@ -256,15 +281,17 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
   /* width: 45%; Set the width of the modal */
   /* background-image: linear-gradient(to right, #3a514c, #473939); */
   color: white;
-  font-family: 'Arimo';
+  font-family: monospace;
+  /* font-family: 'Arimo'; */
   background-image: linear-gradient(148deg, rgba(85, 139, 254, 0.12) 1.65%, rgba(87, 139, 254, 0) 72%, #0B0F18);
-  background-color: #1c263b;
+  background-color: #1a2338ba;
+  /* background-color: #1c263b; */
   width: 23rem;
   margin: 30px;
 }
 
 #loginButton-b {
-  background: linear-gradient(to right, #5a605f, #484747);
+  /* background: linear-gradient(to right, #5a605f, #484747);
   border: 1px solid white;
   border-radius: 3px;
   width: 130px;
@@ -273,7 +300,30 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
   color: white;
   width: 78px;
   display: inline-block;
+  text-align: center; */
+
+  text-decoration: none;
+  color: white;
+  /* height: 45px; */
+  /* display: inline-block; */
+  /* border: 2px solid white; */
+  font-size: 17px;
+  border-radius: 27px;
+  /* width: 9rem; */
+  width: 32%;
+  min-width: 6rem;
   text-align: center;
+  margin-left: 10px;
+  background-color: ff4f6e;
+  border: 2px solid #ff4f6e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  font-family: monospace;
+  /* font-family: sans-serif; */
+  transition: background-color 0.3s ease;
+  display: inline-block;
 }
 
 /* Close button style */

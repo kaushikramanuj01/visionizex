@@ -50,7 +50,8 @@ include 'navbar.php';
         border-radius: 17px;
         text-align: center;
         color: white;
-        font-family: system-ui;
+        font-family: monospace;
+        /* font-family: system-ui; */
         position: relative;
         z-index: 4;
         /* background-image: url(images/p5.jpg); */
@@ -241,18 +242,19 @@ include 'navbar.php';
                 <div class="title-s">
                     USD $0
                 </div>
+                <br>
                 <span>
                     <a href="javascript:void(0);" class="buy_btn b_btn1">Free</a>
                 </span>
                 <div class="info_box">
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit consequatur, a deserunt minus enim sunt.
+                    <p>Get started with our Free package and enjoy basic features at no cost. Ideal for beginners or those looking to explore our platform.
                         </p>
                         
                         <ul>
-                            <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
-                            <li>Lorem ipsum dolor sit amet.</li>
-                            <li>Lorem ipsum dolor sit amet, consectetur adipisicing.</li>
-                            <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio, aliquam!</li>
+                            <li>Generate a limited number of images per month.</li>
+                            <li>Generated images are publicly accessible.</li>
+                            <li>Images are generated at a lower resolution.</li>
+                            <li>Longer processing time for image generation.</li>
                         </ul>
                 </div>
             </div>
@@ -269,13 +271,12 @@ include 'navbar.php';
                 </span>
 
                 <div class="info_box">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam aliquid animi incidunt
-                    consectetur rerum. Fugiat!</p>
+                <p>Upgrade to our Classic package for access to additional features and enhanced functionality. Perfect for users seeking more advanced tools and capabilities.</p>
                 <ul>
-                    <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing.</li>
-                    <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio, aliquam!</li>
+                    <li>Generate an unlimited number of images.</li>
+                    <li>Keep your generated images private.</li>
+                    <li>Images are generated at high resolution.</li>
+                    <li>Enjoy quicker processing time for image generation.</li>
                 </ul>
                 </div>
             </div>
@@ -292,15 +293,12 @@ include 'navbar.php';
                 </span>
 
                 <div class="info_box">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ex beatae placeat laudantium!
-                    Accusantium perspiciatis assumenda ducimus quisquam?
-                </p>
+                <p>Unlock the full potential of our platform with our Expert package. Gain access to premium features and exclusive benefits designed for power users and professionals.</p>
                 <ul>
-                    <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
-                    <li>Lorem ipsum dolor sit amet.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing.</li>
-                    <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio, aliquam!</li>
+                    <li>Generate an unlimited number of images.</li>
+                    <li>Keep your generated images private.</li>
+                    <li>Images are generated at high resolution.</li>
+                    <li>Enjoy quicker processing time for image generation.</li>
                 </ul>
             </div>
 

@@ -14,7 +14,8 @@ body {
     /* padding: 10px 20px; */
     padding: 10px 5px;
     color: #fff;
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
+    font-family: monospace;
     position: sticky;
     top: 0px;
     z-index: 100;
@@ -294,7 +295,8 @@ body {
     text-decoration: none;
     /* color: #333; */
     transition: background-color 0.3s ease;
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
+    font-family: monospace;
   }
 
   #mySidebar a:hover {
@@ -323,7 +325,8 @@ body {
     margin-right: 10px;
     font-size: medium;
     text-decoration: none;
-    font-family: sans-serif;
+    font-family: monospace;
+    /* font-family: sans-serif; */
   }
   .border-b{
     border-bottom: 2px solid white;
@@ -442,7 +445,8 @@ body {
             height: 70px;
             border-radius: 4px;
             font-size: 14px;
-            font-family: sans-serif;
+            /* font-family: sans-serif; */
+            font-family: monospace;
         }
         .generate_btn{
             margin-left: 0px !important;
