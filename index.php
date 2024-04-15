@@ -20,6 +20,8 @@ console.log(user_prompts);
 <html lang="en">
 
 <head>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="main.js"></script>
@@ -362,7 +364,7 @@ console.log(user_prompts);
 
         //! generate button logic start
             $("#generate").on("click", function() {
-                $(".generation_msg_box").show();
+                // $(".generation_msg_box").show();
 
                 var inputText = document.getElementById("promptInput").value.trim();
                 // Check if input value is empty
@@ -377,6 +379,7 @@ console.log(user_prompts);
                 console.log(inputText);
 
                 if (login == 1) {
+                    $(".generation_msg_box").show();
                     console.log('session login:', login);
                     generate(inputText);
                 } else {
@@ -384,7 +387,7 @@ console.log(user_prompts);
                     localStorage.setItem('user_prompt', inputText);
                    
                     console.log('user_prompt:', user_prompt);
-                    var redirectUrl = 'login.php';
+                    var redirectUrl = 'login';
                     window.location.href = redirectUrl;
                 }
             });
