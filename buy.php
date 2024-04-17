@@ -7,7 +7,7 @@ require('razorpay-php-2.9.0/Razorpay.php');
 
 $login = $_SESSION['login'];
 if($login !== 1){
-    header("location:login.php" );
+    header("location:login" );
 }
 
 use Razorpay\Api\Api;
@@ -220,7 +220,7 @@ if($useremail !== ""){
                 <span class="rv-e"><?php echo $price; ?></span>
             </div>
 
-            <form action="verify.php" method="POST">
+            <form action="verify" method="POST">
                 <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="<?php echo $data['key']?>"
                     data-amount="<?php echo $data['amount']?>" data-currency="INR"
                     data-name="<?php echo $data['name']?>" data-image="<?php echo $data['image']?>"
