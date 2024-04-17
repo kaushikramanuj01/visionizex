@@ -393,7 +393,7 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
       <span class="close">&times;</span>
       <p>To fill this form you have to login first.</p>
       <p class="p-2">To login Click here.</p>
-      <a href="login.php" id="loginButton-b">Login</a>
+      <a href="login" id="loginButton-b">Login</a>
       <!-- <button id="loginButton">Login</button> -->
     </div>
   </div>
@@ -405,16 +405,16 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
         <h2>CONTACT</h2>
         <div class="links">
           <div class="link">
-            <a><img src="https://i.postimg.cc/m2mg2Hjm/linkedin.png" alt="linkedin"></a>
+            <a href="https://www.linkedin.com/" target="_blank"><img src="https://i.postimg.cc/m2mg2Hjm/linkedin.png" alt="linkedin"></a>
           </div>
           <div class="link">
-            <a><img src="https://i.postimg.cc/YCV2QBJg/github.png" alt="github"></a>
+            <a href="https://github.com/" target="_blank"><img src="https://i.postimg.cc/YCV2QBJg/github.png" alt="github"></a>
           </div>
-          <div class="link">
+          <!-- <div class="link">
             <a><img src="https://i.postimg.cc/W4Znvrry/codepen.png" alt="codepen"></a>
-          </div>
+          </div> -->
           <div class="link">
-            <a><img src="https://i.postimg.cc/NjLfyjPB/email.png" alt="email"></a>
+            <a href="mailto:your-email@example.com" target="_blank"><img src="https://i.postimg.cc/NjLfyjPB/email.png" alt="email"></a>
           </div>
         </div>
       </div>

@@ -392,10 +392,10 @@ function showPopupMessage3(message, status) {
 //     }, 800000);
 // }
 
-//! navbar -> sidebar code
-function w3_close() {
-    document.getElementById("mySidebar").classList.remove("show");
-}
+// function w3_close() {
+//     document.getElementById("mySidebar").classList.remove("show");
+//     isModalOpen = false;
+// }
 function w3_toggle() {
     const sidebar = document.getElementById("mySidebar");
     sidebar.classList.toggle("show");
@@ -452,3 +452,41 @@ function isValidEmail(email) {
     return emailPattern.test(email);
 }
 //! data validationi code end 
+
+//! side bar/modal toggel code start
+    const mySidebar = document.querySelector("#mySidebar");
+    const openSidebar = document.querySelector("#openSidebar"); //btn
+
+    let toggelvalue = false;
+    function togglesidebar(){
+        sidebar.classList.toggle("hide");
+        console.log("IN_togglesidebar__FUNCTION");
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").classList.remove("show");
+        toggelvalue = false;
+    }
+
+    openSidebar.addEventListener('click',() => {
+        console.log("IN__addEventListener__click");
+        mySidebar.classList.toggle("hide");
+        if(toggelvalue == true){
+            document.getElementById("mySidebar").classList.remove("show");
+            toggelvalue = false;
+        }else{
+            const sidebar = document.getElementById("mySidebar");
+            sidebar.classList.toggle("show");
+            toggelvalue = true;
+            console.log("IN_ELSE__PART");
+        }
+    })
+
+    document.addEventListener('click',e=>{
+        if(!mySidebar.contains(e.target) && e.target !== openSidebar){
+            document.getElementById("mySidebar").classList.remove("show");
+            toggelvalue = false;
+            console.log("IN MAINEVENT");
+        }
+    })
+//! side bar/modal toggel code end

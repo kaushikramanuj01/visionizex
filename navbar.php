@@ -6,24 +6,21 @@
     <div class="buttons">
         <!-- <a href="javascript:void(0)" onclick="showImageGeneration()">Generate</a>
             <a href="javascript:void(0)" onclick="showGallery()">Explore ideas</a> -->
-
-        <a href="index.php" id="imageButton" class="nav_hide2">Generate</a>
-        <a href="creation.php" id="chatButton" class="nav_hide2">Explore ideas</a>
-        <!-- <a href="blog.php" id="chatButton" class="nav_hide">Blog</a> -->
-        <a href="contact.php" id="chatButton" class="nav_hide">Contact</a>
-        <a href="profile.php" id="chatButton" class="nav_hide">Profile</a>
+        <a href="index" id="imageButton" class="nav_hide2">Generate</a>
+        <a href="creation" id="chatButton" class="nav_hide2">Explore ideas</a>
+        <!-- <a href="blog" id="chatButton" class="nav_hide">Blog</a> -->
+        <a href="contact" id="chatButton" class="nav_hide">Contact</a>
+        <a href="profile" id="chatButton" class="nav_hide">Profile</a>
         <!-- <button id="imageButton">Image</button> -->
         <!-- <button id="chatButton">Chat</button> -->
     </div>
     <div class="jamButton">
         <!-- <div class="i-block">
             <div class="premium_btn_div">
-                <a href="premium.php" id="premium_btn">Premium</a>
+                <a href="premium" id="premium_btn">Premium</a>
             </div>
         </div> -->
-
-            <?php 
-       
+        <?php 
         if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
             $usercredit = $SubDB->countcredit();
             ?>
@@ -36,47 +33,49 @@
 
             </div>
         </div>
-            <?php }  ?>
+        <?php }  ?>
 
         <?php if(isset($_SESSION['login']) && $_SESSION['login'] == 1){ ?>
-        <a href="logout.php" id="logoutbutton" class="nav_hide">Logout</a>
+        <a href="logout" id="logoutbutton" class="nav_hide">Logout</a>
         <?php }else{ ?>
-        <a href="login.php" id="loginbutton" class="nav_hide">Login</a>
+        <a href="login" id="loginbutton" class="nav_hide">Login</a>
         <?php } ?>
         <div class="i-block">
             <!-- <div class="premium_btn_div"> -->
-                <a href="premium.php" class="premium_btn_div nav_hide" id="premium_btn">Premium</a>
+            <a href="premium" class="premium_btn_div nav_hide" id="premium_btn">Premium</a>
             <!-- </div> -->
         </div>
-        <button id="openSidebar" onclick="w3_toggle()">☰</button>
+        <button id="openSidebar">☰</button>
+        <!-- <button id="openSidebar" onclick="toggle_sidebar()">☰</button> -->
+        <!-- <button id="openSidebar" onclick="w3_toggle()">☰</button> -->
         <!-- <button class="rk_btn w3-button w3-xlarge" onclick="w3_toggle()">button</button> -->
     </div>
 </div>
 
 <div class="nav-second">
-    <a href="index.php" class="border-b">Generate</a>
-    <a href="creation.php">Explore ideas</a>
+    <a href="index" class="border-b">Generate</a>
+    <a href="creation">Explore ideas</a>
 </div>
 
 <div id="mySidebar">
-  <a href="#" class="w3-bar-item w3-button" onclick="w3_close()">Close &times;</a>
-  <!-- <div class="i-block"> -->
+    <!-- <a href="javascript:void(0)" class="w3-bar-item w3-button">Close &times;</a> -->
+    <!-- <a href="javascript:void(0)" class="w3-bar-item w3-button" onclick="toggle_sidebar()">Close &times;</a> -->
+    <a href="javascript:void(0)" class="w3-bar-item w3-button" onclick="w3_close()">Close &times;</a>
+    <!-- <div class="i-block"> -->
     <!-- <div class="premium_btn_div"> -->
-        <a href="premium.php" class="premium_btn_div w3-bar-item w3-button" id="premium_btn">Premium</a>
     <!-- </div> -->
-  <!-- </div> -->
-  <!-- <a href="blog.php" class="w3-bar-item w3-button">Blog</a> -->
-  <a href="contact.php" class="w3-bar-item w3-button">Contact</a>
-  <a href="profile.php" class="w3-bar-item w3-button">Profile</a>
+    <!-- </div> -->
+    <!-- <a href="blog" class="w3-bar-item w3-button">Blog</a> -->
+    <a href="premium" class="premium_btn_div w3-bar-item w3-button" id="premium_btn">Premium</a>
+    <a href="contact" class="w3-bar-item w3-button">Contact</a>
+    <a href="profile" class="w3-bar-item w3-button">Profile</a>
 
-  <?php if(isset($_SESSION['login']) && $_SESSION['login'] == 1){ ?>
-    <a href="logout.php" class="w3-bar-item w3-button" id="logoutbutton">Logout</a>
+    <?php if(isset($_SESSION['login']) && $_SESSION['login'] == 1){ ?>
+    <a href="logout" class="w3-bar-item w3-button" id="logoutbutton">Logout</a>
     <?php }else{ ?>
-    <a href="login.php" class="w3-bar-item w3-button" id="loginbutton">Login</a>
-  <?php } ?>
-
+    <a href="login" class="w3-bar-item w3-button" id="loginbutton">Login</a>
+    <?php } ?>
 </div>
-
 
 <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
