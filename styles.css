@@ -262,7 +262,7 @@ body {
 /* navigation bar -> sidebar code  */
 
 #mySidebar {
-    position: absolute;
+    position: fixed;
     right: 20px;
     top: 52px;
     /* border: 3px solid black; */
@@ -271,7 +271,7 @@ body {
     /* z-index: 1; */
     overflow-x: hidden;
     overflow-y: hidden;
-    max-height: 0;
+    max-height: 0px;
     transition: max-height 0.4s ease;
     background-color: #4c4c4c;
     z-index: 100;
