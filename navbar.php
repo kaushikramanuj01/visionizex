@@ -6,7 +6,7 @@
     <div class="buttons">
         <!-- <a href="javascript:void(0)" onclick="showImageGeneration()">Generate</a>
             <a href="javascript:void(0)" onclick="showGallery()">Explore ideas</a> -->
-        <a href="index" id="imageButton" class="nav_hide2">Generate</a>
+        <a href="./" id="imageButton" class="nav_hide2">Generate</a>
         <a href="creation" id="chatButton" class="nav_hide2">Explore ideas</a>
         <!-- <a href="blog" id="chatButton" class="nav_hide">Blog</a> -->
         <a href="contact" id="chatButton" class="nav_hide">Contact</a>

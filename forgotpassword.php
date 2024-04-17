@@ -3,7 +3,8 @@ require_once "config/init.php";
 include "navbar.php";
 
 if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
-    header("location:index.php");
+    header("location:./");
+    // header("location:index");
 }
 ?>
 <!DOCTYPE html>
@@ -353,7 +354,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
                     </form>
 
                     <div class="additional-links">
-                        <p>Don't have an account? <a href="signup.php">Sign up</a></p>
+                        <p>Don't have an account? <a href="signup">Sign up</a></p>
                     </div>
                 </div>
             </div>
@@ -494,7 +495,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
 
             if (jsondata.success == 1) {
                 var parameter1 = '1'; // for login indicate
-                var redirectUrl = 'login.php';
+                var redirectUrl = 'login';
                 window.location.href = redirectUrl;
             }else{
                 showPopupMessage(jsondata.message, jsondata.status);

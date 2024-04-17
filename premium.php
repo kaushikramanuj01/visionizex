@@ -267,7 +267,7 @@ include 'navbar.php';
                     Rs. 1500 / 2000 Credit Points
                 </div>
                 <span>
-                    <a href="buy.php?pack=2" class="buy_btn b_btn2">Buy Now</a>
+                    <a href="buy?pack=2" class="buy_btn b_btn2">Buy Now</a>
                 </span>
 
                 <div class="info_box">
@@ -289,7 +289,7 @@ include 'navbar.php';
                     USD 2000 / 4000 Credit Points
                 </div>
                 <span>
-                    <a href="buy.php?pack=3" class="buy_btn b_btn3">Buy Now</a>
+                    <a href="buy?pack=3" class="buy_btn b_btn3">Buy Now</a>
                 </span>
 
                 <div class="info_box">

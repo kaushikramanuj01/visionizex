@@ -3,7 +3,7 @@ require_once "config/init.php";
 include "navbar.php";
 
 if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
-    header("location:index.php" );
+    header("location:./" );
 }
 ?>
 <!DOCTYPE html>
@@ -299,8 +299,8 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
                         <button type="button" class="login-button" id="login-button">Login <div id="loader"></div> </button>
                     </form>
                     <div class="additional-links">
-                        <p>Don't have an account? <a href="signup.php">Sign up here.</a></p>
-                        <p>Forgot your password? <a href="forgotpassword.php">Click here to reset.</a></p>
+                        <p>Don't have an account? <a href="signup">Sign up here.</a></p>
+                        <p>Forgot your password? <a href="forgotpassword">Click here to reset.</a></p>
                     </div>
                 </div>
             </div>
@@ -364,7 +364,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
             if (jsondata.success == 1) {
                 document.getElementById('passValidation').style.display = 'none';
                 var parameter1 = '1'; // for login indicate
-                var redirectUrl = 'index.php?l=' + encodeURIComponent(parameter1);
+                var redirectUrl = './?l=' + encodeURIComponent(parameter1);
                              
                 window.location.href = redirectUrl;
             }else{

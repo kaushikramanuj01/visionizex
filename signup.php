@@ -2,7 +2,7 @@
     require_once "config/init.php";
 
     if(isset($_SESSION['login']) && $_SESSION['login'] == 1){
-        header("location:index.php" );
+        header("location:./" );
     }
 ?>
 
@@ -355,7 +355,7 @@
                         <button type="button" class="otp-button" id="otp-button">Submit Code <div class="loader" id="loader_otp"></div> </button>
                     </form>
                     <div class="additional-links">
-                        <p>Already have an account? <a href="login.php">Log in here.</a></p>
+                        <p>Already have an account? <a href="login">Log in here.</a></p>
                         <!-- <p><a href="#">Forgot Password?</a></p> -->
                     </div>
                 </div>
@@ -477,7 +477,7 @@
                 // document.getElementById('otpForm').style.display = 'none';
                 var parameter1 = '1';
                 // var parameter2 = 'value2';
-                var redirectUrl = 'index.php?l=' + encodeURIComponent(parameter1);
+                var redirectUrl = './?l=' + encodeURIComponent(parameter1);
                 window.location.href = redirectUrl;
             }else{
                 showPopupMessage(jsondata.message, jsondata.status);

@@ -475,7 +475,7 @@ $usercredit = $SubDB->countcredit();
                 <div class="logging_msg">Please log in to view your profile.</div>
 
                 <div class="log_btn_div">
-                    <a href="login.php" class="log_btn">Login</a>
+                    <a href="login" class="log_btn">Login</a>
                 </div>
 
             </div>
