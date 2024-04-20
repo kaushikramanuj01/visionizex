@@ -151,6 +151,29 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
     .gallery img{
         width: 150px;
     }
+    .loader {
+        /* border: 4px solid #f3f3f3; Light grey */
+        border: 4px solid #937575;
+        /* border-top: 4px solid #3498db; Blue */
+        /* border-top: 4px solid #4d6c81; */
+        border-top: 4px solid #4d6c8100;
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        animation: spin 1s linear infinite;
+        display: none; /*Initially hide loader*/
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .loader_div{
+        margin-top: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     </style>
 </head>
 
@@ -214,6 +237,9 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
             <!-- ?php } } ?> -->
         </div>
     </div>
+    <div class="loader_div">
+        <div class="loader" id="img_loader"></div> 
+    </div>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -245,12 +271,13 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
                 $(".generation_msg_box").hide();
                 showPopupMessage("Server Error", 0);
                 isLoading = false; // Reset the data loading flag
+                $("#img_loader").hide();
             }
 
             function successCallback(data) {
-                console.log(data);
+                // console.log(data);
                 if (data.status == 1) {
-                    console.log(data.data);
+                    // console.log(data.data);
 
                     var gallery = document.getElementById('gallery');
                     // gallery.innerHTML = gallery.innerHTML + data.data;
@@ -268,9 +295,10 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
                     //     $("#generatedText").show();
 
                 } else {
-                    console.log(data.message);
+                    // console.log(data.message);
                 }
                 isLoading = false; // Reset the data loading flag
+                $("#img_loader").hide();
                 // if (data.imgurl) {
                 //     // $("#imageResult").attr("src", 'images/' + data.image_name);
                 //     // $("#imageResult").attr("src", data.imgurl);
@@ -320,8 +348,9 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
             if (isLoading) {
                 return; // If data is already being loaded, do nothing
             }   
-            console.log("Loading more data...");
+            // console.log("Loading more data...");
             isLoading = true; // Set the loading flag to true
+            $("#img_loader").show();
             fillimage(); // Your data loading logic here
             // After data loading is complete, set the loading flag back to false
             // This ensures that the function can be called again when the user scrolls to the bottom next time
@@ -333,8 +362,8 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
             if (isScrolledToBottom()) {
                 var loadmoreele = document.getElementById('loadmore');
                 var loadmore = loadmoreele.value;       
-                console.log(loadmore);
-                console.log("isLoading" + isLoading);
+                // console.log(loadmore);
+                // console.log("isLoading" + isLoading);
                 if(loadmore == "1"){
                     // Load more data when the user reaches the bottom
                     loadMoreData();
