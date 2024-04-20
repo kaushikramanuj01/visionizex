@@ -79,7 +79,7 @@ console.log(user_prompts);
                     ?>
                     <div class="slide" data-blog-id="<?php echo $b_id ?>">
                         <a href="javascript:void(0)" id="blog" class="blog-link">
-                            <img src="images/<?php echo $b_img; ?>" alt="blog image">
+                            <img src="images/blog/<?php echo $b_img; ?>" alt="blog image">
                             <!-- <div class="text-overlay">
                                 <p>?php echo $b_title; ?></p>
                             </div> -->
