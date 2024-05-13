@@ -501,9 +501,9 @@ body {
         .mySlides img{
             height: 140px !important;
         }
-        .gallery img{
+        /* .gallery img{
             width: 160px !important;
-        }
+        } */
         .slider-container{
             width: 70% !important;
         }

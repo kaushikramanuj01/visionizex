@@ -27,19 +27,34 @@ if ($action == "gallery") {
     $allimages = $SubDB->execute("tblgenerated", $where,$sort,$perpage,$skip);
 
     $data = "";
+    $gal_1 = "";
+    $gal_2 = "";
+    $gal_3 = "";
+    $tempnum = 1;
     foreach($allimages as $value){
         $image_path = $value['local_img'];
         $_id = $value['_id'];
 
         if($image_path!==""){
-            $final_img_path = "images/".$image_path;
+            $final_img_path = "images/genimg/".$image_path;
         }else{
             $final_img_path = $value['image_url'];
         }
         
         if($final_img_path !==""){
 
-          $data .= '<div class="img_div"><a href="#"><img src="'. $final_img_path.'" alt="'.$_id .'" srcset="" class="gallery-image"></a></div>';
+          $data = '<div class="img_div"><a href="#"><img src="'. $final_img_path.'" alt="'.$_id .'" srcset="" class="gallery-image" loading="lazy"></a></div>';
+
+          if($tempnum <= 10){
+            $gal_1 .= $data;
+          }else if($tempnum <= 20){
+            $gal_2 .= $data;
+          }else{
+            $gal_3 .= $data;
+          }
+
+          $tempnum++;
+        //   $data .= '<div class="img_div"><a href="#"><img src="'. $final_img_path.'" alt="'.$_id .'" srcset="" class="gallery-image"></a></div>';
 
         }
     }
@@ -54,6 +69,9 @@ if ($action == "gallery") {
 
     $response['loadmore'] = $loadmore;
     $response['data'] = $data;
+    $response['gal_1'] = $gal_1;
+    $response['gal_2'] = $gal_2;
+    $response['gal_3'] = $gal_3;
     $response['nextpage'] = $pageno+1;
 
 

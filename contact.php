@@ -414,7 +414,7 @@ $login = json_encode(isset($_SESSION['login']) ? ($_SESSION['login']) : "");
             <a><img src="https://i.postimg.cc/W4Znvrry/codepen.png" alt="codepen"></a>
           </div> -->
           <div class="link">
-            <a href="mailto:your-email@example.com" target="_blank"><img src="https://i.postimg.cc/NjLfyjPB/email.png" alt="email"></a>
+            <a href="mailto:communicate@visionizex.tech" target="_blank"><img src="https://i.postimg.cc/NjLfyjPB/email.png" alt="email"></a>
           </div>
         </div>
       </div>

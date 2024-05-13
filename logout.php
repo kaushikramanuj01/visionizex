@@ -13,5 +13,5 @@ session_destroy();
 localStorage.clear();
 
 // Redirect the user to the welcome page
-window.location.href = 'index.php';
+window.location.href = 'index';
 </script>

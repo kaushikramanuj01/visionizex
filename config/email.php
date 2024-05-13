@@ -22,8 +22,10 @@ class email{
             $mail->isSMTP();                                   //Send using SMTP
             $mail->Host       = "mail.visionizex.tech";
             $mail->SMTPAuth   = true;                          //Enable SMTP authentication
-            $mail->Username   = 'kaushikramanuj123@visionizex.tech';       //SMTP username
-            $mail->Password   = '=@t-tsjGp*S(';                            //SMTP password
+            $mail->Username   = 'communicate@visionizex.tech';       //SMTP username
+            // $mail->Username   = 'kaushikramanuj123@visionizex.tech';       //SMTP username
+            $mail->Password   = 'hbpeqbruQ@YT';                            //SMTP password
+            // $mail->Password   = '=@t-tsjGp*S(';                            //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; 
             $mail->Port       = 465;
 
@@ -32,8 +34,10 @@ class email{
             
             //Recipients
             // $mail->setFrom('filmybits01@gmail.com', 'mailer kaushik');
-            $mail->setFrom('kaushikramanuj123@visionizex.tech', 'mailer kaushik');
-            $mail->addAddress($receiver, 'Receaver name');                //Add a recipient
+            $mail->setFrom('communicate@visionizex.tech', 'VisionizeX');
+            // $mail->setFrom('kaushikramanuj123@visionizex.tech', 'mailer kaushik');
+            $mail->addAddress($receiver,'');                //Add a recipient
+            // $mail->addAddress($receiver, 'Receaver name');                //Add a recipient
             // $mail->addAddress('kaushikramanuj01@gmail.com', 'Receaver vivek');     //Add a recipient
         
             //Content

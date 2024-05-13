@@ -22,35 +22,36 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
         background-color: #333;
     }
 
-    .gallery {
+    /* #gallery {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
         gap: 12px;
-        /* padding: 0px 17px; */
+        /* padding: 0px 17px; *
         width: 96%;
-    }
+    } */
 
-    .gallery img {
-        /* width: 186px; */
+    /* #gallery img {
+        /* width: 186px; *
         width: 182px;
-        /* width: -webkit-fill-available; */
+        /* width: -webkit-fill-available; *
         border-radius: 6px;
-    }
+    } */
 
     .main_gallery {
-        margin-top: 30px;
+        margin-top: 15px;
+        /* margin-top: 30px; */
         width: -webkit-fill-available;
         display: flex;
         justify-content: center;
-
+        padding: 0px 20px;
     }
 
-    .gallery a:hover {
+    /* #gallery a:hover {
         opacity: 0.6;
-    }
+    } */
 
     /* .gallery-image:hover {
             filter: grayscale(100%) invert(100%) sepia(100%) saturate(500%) brightness(150%); /* Adjust the filter properties as needed 
@@ -66,7 +67,8 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
         /* max-width: 93%; */
         position: relative;
         /* margin: auto; */
-        width: 96%;
+        width: 97%;
+        /* width: 96%; */
     }
 
     /* Caption text */
@@ -144,13 +146,14 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
         width: fit-content;
     }
     .main_slider_con{
-        display: flex;
+        /* display: flex; */
         justify-content: center;
-
+        display: none;
+        /* padding: 0px 20px; */
     }
-    .gallery img{
+    /* #gallery img{
         width: 150px;
-    }
+    } */
     .loader {
         /* border: 4px solid #f3f3f3; Light grey */
         border: 4px solid #937575;
@@ -174,6 +177,80 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
         justify-content: center;
         align-items: center;
     }
+
+    
+    #gallery {
+        margin-left: 11px;
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+        /* -webkit-column-count: 4;
+        -moz-column-count: 4;
+        column-count: 4; */
+
+        -webkit-column-gap: 20px;
+        -moz-column-gap: 20px;
+        column-gap: 20px;
+    }
+
+    #gallerygrid{
+        /* margin-left: 11px; */
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+    /* -webkit-column-gap: 20px; */
+    /* -moz-column-gap: 20px; */
+    /* column-gap: 20px; */
+    }
+    @media (max-width:1200px) {
+        #gallerygrid {
+            /* margin-left: 8px; */
+            /* -webkit-column-count: 1;
+            -moz-column-count: 1;
+            column-count: 1; */
+            -webkit-column-count: 3;
+            -moz-column-count: 3;
+            column-count: 3;
+
+            /* -webkit-column-gap: 20px; */
+            /* -moz-column-gap: 20px; */
+            /* column-gap: 20px; */
+        }
+    }
+
+    @media (max-width:800px) {
+        #gallerygrid {
+            /* margin-left: 8px; */
+            -webkit-column-count: 2;
+            -moz-column-count: 2;
+            column-count: 2;
+
+            /* -webkit-column-gap: 20px;
+            -moz-column-gap: 20px;
+            column-gap: 20px; */
+        }
+    }
+
+    @media (max-width:600px) {
+        #gallerygrid {
+            /* margin-left: 8px; */
+            -webkit-column-count: 1;
+            -moz-column-count: 1;
+            column-count: 1;
+        }
+    }
+
+    #gallery img{
+        width: 100%;
+        height: auto;
+        /* margin: 4% auto; */
+        margin: 2% auto;
+        box-shadow: -3px 5px 15px #000;
+        cursor: pointer;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+    }
+
     </style>
 </head>
 
@@ -184,12 +261,14 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
 
             <div class="mySlides fade">
                 <!-- <div class="numbertext">1 / 3</div> -->
+                <!-- <img src="banner/img/p1.jpeg" style="width:100%"> -->
                 <img src="images/slider/p3.jpg" style="width:100%">
                 <div class="text">Caption Text</div>
             </div>
 
             <div class="mySlides fade">
                 <!-- <div class="numbertext">2 / 3</div> -->
+                <!-- <img src="banner/img/p2.jpg" style="width:100%"> -->
                 <img src="images/slider/p4.jpg" style="width:100%">
                 <div class="text">Caption Two</div>
             </div>
@@ -213,10 +292,37 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
 
     <div class="main_gallery">
         <input type="hidden" name="pageno" value="1" id="pageno">
-        <input type="hidden" name="perpage" value="10" id="perpage">
+        <input type="hidden" name="perpage" value="30" id="perpage">
         <input type="hidden" name="loadmore" value="1" id="loadmore">
-        <div class="gallery" id="gallery">
-            <!-- ?php 
+        <!-- <div class="gallery" id="gallery"> -->
+        <!-- <div id="gallery" class="gallery container-fluid"> -->
+            
+        <div id="gallerygrid">
+
+            <div id="gallery" class="gallery gal_1 container-fluid">    
+                <!-- <img src="images/img2/1.jpg" class="">
+                <img src="images/img2/2.jpg" class="">
+                <img src="images/img2/3.jpg" class="">
+                <img src="images/img2/4.jpg" class="">
+                <img src="images/img2/5.jpg" class=""> -->
+            </div>
+            <div id="gallery" class="gallery gal_2 container-fluid">    
+                <!-- <img src="images/img2/6.jpg" class="">
+                <img src="images/img2/7.jpg" class="">
+                <img src="images/img2/8.jpg" class="">
+                <img src="images/img2/9.jpg" class="">
+                <img src="images/img2/10.jpg" class=""> -->
+            </div>
+            <div id="gallery" class="gallery gal_3 container-fluid">        
+                <!-- <img src="images/img2/11.jpg" class="">
+                <img src="images/img2/12.jpg" class="">
+                <img src="images/img2/13.jpg" class="">
+                <img src="images/img2/14.jpg" class="">
+                <img src="images/img2/15.jpg" class=""> -->
+            </div>
+            
+        </div>
+        <!-- ?php 
             foreach($allimages as $value){
 
                 $image_path = $value['local_img'];
@@ -235,7 +341,7 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
             <!-- class="gallery-image"></a> -->
 
             <!-- ?php } } ?> -->
-        </div>
+        <!-- </div> -->
     </div>
     <div class="loader_div">
         <div class="loader" id="img_loader"></div> 
@@ -279,10 +385,21 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
                 if (data.status == 1) {
                     // console.log(data.data);
 
-                    var gallery = document.getElementById('gallery');
-                    // gallery.innerHTML = gallery.innerHTML + data.data;
+                    // var gallery = document.getElementById('gallery');
+                    var gal_1 = document.querySelector(".gal_1");
+                    var gal_2 = document.querySelector(".gal_2");
+                    var gal_3 = document.querySelector(".gal_3");
 
-                    gallery.innerHTML += data.data;
+                    console.log(gal_1);
+                    // var elements = document.querySelectorAll('.example-class');
+                    // gallery.innerHTML = gallery.innerHTML + data.data;
+                    // gal_1.innerHTML = gal_1.innerHTML + data.gal_1;
+
+                    console.log(data.gal_1);
+                    // gallery.innerHTML += data.data;
+                    gal_1.innerHTML += data.gal_1;
+                    gal_2.innerHTML += data.gal_2;
+                    gal_3.innerHTML += data.gal_3;
 
 
                     var pageno = document.getElementById('pageno');
@@ -341,7 +458,8 @@ $allimages = $SubDB->execute("tblgenerated", $where,$sort,"");
         var isLoading = false;
         // Function to check if the user has scrolled to the bottom of the page
         function isScrolledToBottom() {
-            return window.innerHeight + window.scrollY >= document.body.offsetHeight;
+            // return window.innerHeight + window.scrollY >= document.body.offsetHeight;
+            return window.innerHeight + window.scrollY >= document.body.offsetHeight - 1500;
         }
         // Function to load more data (replace this with your actual data loading logic)
         function loadMoreData() {
