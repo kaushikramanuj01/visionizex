@@ -240,7 +240,7 @@ include 'navbar.php';
                 <h5>Basic</h5>
                 <!-- <div class="current">(Current)</div> -->
                 <div class="title-s">
-                    USD $0
+                    Rs.0
                 </div>
                 <br>
                 <span>
@@ -264,7 +264,7 @@ include 'navbar.php';
                 <h5>Classic</h5>
                 <!-- <div class="current">(Current)</div> -->
                 <div class="title-s">
-                    Rs. 1500 / 2000 Credit Points
+                    Rs.1500 / 2000 Credit Points
                 </div>
                 <span>
                     <a href="buy?pack=2" class="buy_btn b_btn2">Buy Now</a>
@@ -286,7 +286,7 @@ include 'navbar.php';
                 <h5>Expert</h5>
                 <!-- <div class="current">(Current)</div> -->
                 <div class="title-s">
-                    USD 2000 / 4000 Credit Points
+                    Rs.2000 / 4000 Credit Points
                 </div>
                 <span>
                     <a href="buy?pack=3" class="buy_btn b_btn3">Buy Now</a>
